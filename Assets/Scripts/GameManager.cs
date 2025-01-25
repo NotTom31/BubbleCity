@@ -16,22 +16,10 @@ public class GameManager : MonoBehaviour
     public GameState gameState { get; private set; } = GameState.MAIN_MENU;
     public ShipLogistics Logistics = new ShipLogistics();
     
-    public enum StationType
-    {
-        None, Fuel, Navigation, Temperature    
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // UI Elements
+    public TemperatureStationUI temperatureStationUI;
+    public FuelStationUI fuelStationUI;
+    public NavigationStationUI navigationStationUI;
 
     private void Awake()
     {
@@ -46,4 +34,54 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
     }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    
+
+    public void OpenNodeMap()
+    {
+        Debug.Log("Opening Node Map");
+    }
 }
+
+#region Enums
+
+public enum StationType
+{
+    None, Fuel, Navigation, Temperature    
+}
+
+public enum ShipMovementSpeedSetting
+{
+    None,
+    Slow = 5,
+    Medium = 10,
+    Fast = 15
+}
+    
+public enum NavigationDirection
+{
+    None, Left, Right
+}
+    
+public enum Temperature
+{
+    None,
+    TooCold,
+    Cold,
+    Nominal,
+    Hot,
+    TooHot
+}
+
+#endregion // Enums
