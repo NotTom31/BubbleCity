@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Logistics.ConsumeFuel(Time.deltaTime);
     }
 
     public void OpenNodeMap()
