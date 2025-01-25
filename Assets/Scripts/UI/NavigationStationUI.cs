@@ -10,6 +10,7 @@ public class NavigationStationUI : MonoBehaviour
     public TextMeshProUGUI directionText;
     public Button toggleDirectionButton;
     public Button openMapButton;
+    public CanvasGroup canvasGroup;
 
     void Start()
     {
@@ -37,5 +38,15 @@ public class NavigationStationUI : MonoBehaviour
     private void OnNavigationDirectionChanged(string newNavigationDirection)
     {
         directionText.text = newNavigationDirection;
+    }
+    
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+    }
+    
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
     }
 }
