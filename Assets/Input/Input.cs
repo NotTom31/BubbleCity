@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Input : MonoBehaviour
 {
-
     private PlayerInput input;
+    private Camera mainCamera;
 
-    private InputAction Select;
+    public delegate void OnPointSelected(Vector3 point);
+    public event OnPointSelected PointSelected; 
 
     private void Awake()
     {
         input = new PlayerInput();
+        mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -24,15 +24,17 @@ public class Input : MonoBehaviour
     private void OnDisable()
     {
         input.Player.Select.Disable();
+        input.Player.Select.performed -= OnSelect;
     }
 
     private void OnSelect(InputAction.CallbackContext context)
     {
-        
-    }
+        Vector2 mousePosition = UnityEngine.Input.mousePosition;
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
-    private void FixedUpdate()
-    {
-
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            PointSelected?.Invoke(hit.point);
+        }
     }
 }
