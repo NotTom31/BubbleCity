@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300398654}
   - component: {fileID: 300398653}
+  - component: {fileID: 300398655}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -295,6 +296,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &300398655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300398652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &713907469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,9 +473,69 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050385646}
     m_Modifications:
+    - target: {fileID: 1108284720875914237, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108284720875914237, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108284720875914237, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108284720875914237, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108284720875914237, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5178822757918635151, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
       propertyPath: m_Name
       value: Temperature Station UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441175407651937813, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441175407651937813, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441175407651937813, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441175407651937813, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441175407651937813, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579523133338503549, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579523133338503549, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579523133338503549, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579523133338503549, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579523133338503549, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6827594093620712294, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
       propertyPath: m_Pivot.x
@@ -1176,7 +1257,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
