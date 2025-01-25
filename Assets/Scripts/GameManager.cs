@@ -22,17 +22,6 @@ public class GameManager : MonoBehaviour
         None, Fuel, Navigation, Temperature    
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(station);
-    }
     // UI Elements
     public TemperatureStationUI temperatureStationUI;
     public FuelStationUI fuelStationUI;
@@ -52,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -61,9 +51,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(station);
     }
-    
 
     public void OpenNodeMap()
     {
