@@ -162,7 +162,7 @@ MonoBehaviour:
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 4392175082308733253, guid: 1741e8ee7e2dcd34bb6624287d07d64a, type: 3}
+  m_LeftClickAction: {fileID: -4744719147273797479, guid: 1741e8ee7e2dcd34bb6624287d07d64a, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756355613268626986, guid: 9ec594dac366e264ba21674323bf2e8c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7756355613268626986, guid: 9ec594dac366e264ba21674323bf2e8c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -603,7 +603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827594093620712294, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6827594093620712294, guid: 5b16fbc773f9f4b4cb280b987b6eac74, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -815,7 +815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3176941892068546552, guid: a9c1a5c21c386784e8ff54a51398eacc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3176941892068546552, guid: a9c1a5c21c386784e8ff54a51398eacc, type: 3}
       propertyPath: m_AnchoredPosition.y
