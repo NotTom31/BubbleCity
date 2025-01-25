@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public GameState gameState { get; private set; } = GameState.MAIN_MENU;
     public ShipLogistics Logistics = new ShipLogistics();
     
+    public enum StationType
+    {
+        None, Fuel, Navigation, Temperature    
+    }
     
     // Start is called before the first frame update
     void Start()
