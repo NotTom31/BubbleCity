@@ -8,7 +8,7 @@ public class PlayerNavigation : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.station = GameManager.StationType.None;
+        GameManager.Instance.SetStation(GameManager.StationType.None);
 
         if (navMeshAgent == null)
         {
@@ -45,13 +45,13 @@ public class PlayerNavigation : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Fuel":
-                GameManager.Instance.station = GameManager.StationType.Fuel;
+                GameManager.Instance.SetStation(GameManager.StationType.Fuel);
                 break;
             case "Navigation":
-                GameManager.Instance.station = GameManager.StationType.Navigation;
+                GameManager.Instance.SetStation(GameManager.StationType.Navigation);
                 break;
             case "Temperature":
-                GameManager.Instance.station = GameManager.StationType.Temperature;
+                GameManager.Instance.SetStation(GameManager.StationType.Temperature);
                 break;
         }
     }
@@ -60,13 +60,13 @@ public class PlayerNavigation : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Fuel":
-                GameManager.Instance.station = GameManager.StationType.None;
+                GameManager.Instance.SetStation(GameManager.StationType.None);
                 break;
             case "Navigation":
-                GameManager.Instance.station = GameManager.StationType.None;
+                GameManager.Instance.SetStation(GameManager.StationType.None);
                 break;
             case "Temperature":
-                GameManager.Instance.station = GameManager.StationType.None;
+                GameManager.Instance.SetStation(GameManager.StationType.None);
                 break;
         }
     }
