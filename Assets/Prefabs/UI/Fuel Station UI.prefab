@@ -733,6 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelText: {fileID: 4007750257076300453}
   shipMovementSpeedText: {fileID: 3573001396071358607}
+  fuelFillMeter: {fileID: 7464391627802035952}
   speedForwardButton: {fileID: 1218895348008922207}
   speedBackwardButton: {fileID: 505798524156414066}
 --- !u!1 &3667268268172955736
