@@ -13,7 +13,9 @@ public class FuelStationUI : MonoBehaviour
     [Space(10)] 
     public Button speedForwardButton;
     public Button speedBackwardButton;
-    
+    [Space(10)] 
+    public CanvasGroup canvasGroup;
+
     void Start()
     {
         speedForwardButton.onClick.AddListener(() =>
@@ -26,21 +28,20 @@ public class FuelStationUI : MonoBehaviour
         });
         
         GameManager.Instance.Logistics.OnFuelChanged += OnFuelChanged;
+        
+        Hide();
     }
 
     private void OnFuelChanged(float newFuelAmount)
     {
         fuelText.text = Mathf.FloorToInt(newFuelAmount * 100).ToString();
         fuelFillMeter.fillAmount = Mathf.Clamp01(newFuelAmount / 100.0f);
-    }
 
-    void OnEnable()
-    {
         GameManager.Instance.Logistics.OnShipMovementSpeedChanged += OnShipMovementSpeedSettingChanged;
         OnShipMovementSpeedSettingChanged(GameManager.Instance.Logistics.CurrentShipMovementSpeedSettingString);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameManager.Instance.Logistics.OnShipMovementSpeedChanged -= OnShipMovementSpeedSettingChanged;
     }
@@ -48,5 +49,19 @@ public class FuelStationUI : MonoBehaviour
     private void OnShipMovementSpeedSettingChanged(string newSetting)
     {
         shipMovementSpeedText.text = newSetting;
+    }
+    
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
+    }
+    
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
     }
 }

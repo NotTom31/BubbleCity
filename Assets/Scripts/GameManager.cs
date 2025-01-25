@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,6 +63,27 @@ public class GameManager : MonoBehaviour
     public void SetStation(StationType type)
     {
         Debug.Log(type);
+        switch (type)
+        {
+
+            case StationType.Fuel:
+                fuelStationUI.Show();
+                break;
+            case StationType.Navigation:
+                navigationStationUI.Show();
+                break;
+            case StationType.Temperature:
+                temperatureStationUI.Show();
+                break;
+            
+            case StationType.None:
+                fuelStationUI.Hide();
+                navigationStationUI.Hide();
+                temperatureStationUI.Hide();
+                break;
+            default:
+                break;
+        }
     }
 }
 

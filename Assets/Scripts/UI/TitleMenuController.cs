@@ -29,11 +29,14 @@ public class TitleMenuController : MonoBehaviour
     
     private void QuitGame()
     {
+        #if UNITY_EDITOR
+        
         if (Application.isEditor)
         {
             UnityEditor.EditorApplication.isPlaying = false;
         }
         else
+        #endif
         {
             Application.Quit();
         }
