@@ -7,6 +7,7 @@ using UnityEngine;
 public class TemperatureStationUI : MonoBehaviour
 {
     public TextMeshProUGUI temperatureText;
+    public CanvasGroup canvasGroup;
     
     void OnEnable()
     {
@@ -22,5 +23,15 @@ public class TemperatureStationUI : MonoBehaviour
     private void OnTemperatureChanged(string newTemperature)
     {
         temperatureText.text = newTemperature;
+    }
+
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+    }
+    
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
     }
 }

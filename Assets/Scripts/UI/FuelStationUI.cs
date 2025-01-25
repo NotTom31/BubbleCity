@@ -13,7 +13,9 @@ public class FuelStationUI : MonoBehaviour
     [Space(10)] 
     public Button speedForwardButton;
     public Button speedBackwardButton;
-    
+    [Space(10)] 
+    public CanvasGroup canvasGroup;
+
     void Start()
     {
         speedForwardButton.onClick.AddListener(() =>
@@ -48,5 +50,15 @@ public class FuelStationUI : MonoBehaviour
     private void OnShipMovementSpeedSettingChanged(string newSetting)
     {
         shipMovementSpeedText.text = newSetting;
+    }
+    
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+    }
+    
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
     }
 }
