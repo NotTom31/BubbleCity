@@ -23,14 +23,14 @@ public class NavigationStationUI : MonoBehaviour
         {
             GameManager.Instance.OpenNodeMap();
         });
-    }
-    void OnEnable()
-    {
+        
+        Hide();
+        
         GameManager.Instance.Logistics.OnNavigationDirectionChanged += OnNavigationDirectionChanged;
         OnNavigationDirectionChanged(GameManager.Instance.Logistics.CurrentNavigationDirectionString);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameManager.Instance.Logistics.OnNavigationDirectionChanged -= OnNavigationDirectionChanged;
     }
@@ -43,10 +43,14 @@ public class NavigationStationUI : MonoBehaviour
     public void Show()
     {
         canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
     }
     
     public void Hide()
     {
         canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
     }
 }

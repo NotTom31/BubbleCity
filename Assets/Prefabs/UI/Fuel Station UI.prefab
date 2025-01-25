@@ -35,9 +35,9 @@ RectTransform:
   m_Father: {fileID: 5489026320842207867}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 168.35635, y: -15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 78.0292, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1692747555167111206
@@ -690,6 +690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3176941892068546552}
   - component: {fileID: 6448131710345024561}
+  - component: {fileID: 889096409258081645}
   m_Layer: 5
   m_Name: Fuel Station UI
   m_TagString: Untagged
@@ -736,6 +737,19 @@ MonoBehaviour:
   fuelFillMeter: {fileID: 7464391627802035952}
   speedForwardButton: {fileID: 1218895348008922207}
   speedBackwardButton: {fileID: 505798524156414066}
+  canvasGroup: {fileID: 889096409258081645}
+--- !u!225 &889096409258081645
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539702199295172521}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3667268268172955736
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,10 +783,10 @@ RectTransform:
   m_Father: {fileID: 1006838394128891109}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119.341736, y: -8.049999}
-  m_SizeDelta: {x: 238.6835, y: 16.1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 238.6835, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7528801804847001629
 CanvasRenderer:
@@ -1517,10 +1531,10 @@ RectTransform:
   m_Father: {fileID: 1006838394128891109}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119.341736, y: -51.1}
-  m_SizeDelta: {x: 238.6835, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 238.6835, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900058683929157175
 MonoBehaviour:
@@ -1583,9 +1597,9 @@ RectTransform:
   m_Father: {fileID: 5489026320842207867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 70.32715, y: -15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 78.0292, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4760916305498322141

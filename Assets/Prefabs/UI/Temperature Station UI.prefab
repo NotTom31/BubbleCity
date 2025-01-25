@@ -557,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6827594093620712294}
   - component: {fileID: 497555277951351132}
+  - component: {fileID: 7676688180862704372}
   m_Layer: 5
   m_Name: Temperature Station UI
   m_TagString: Untagged
@@ -598,6 +599,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperatureText: {fileID: 7631674362572914619}
+  canvasGroup: {fileID: 7676688180862704372}
+--- !u!225 &7676688180862704372
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5178822757918635151}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5635775731653298833
 GameObject:
   m_ObjectHideFlags: 0

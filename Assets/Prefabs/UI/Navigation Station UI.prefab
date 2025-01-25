@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 7756355613268626986}
   - component: {fileID: 5729370150899175399}
   - component: {fileID: 7264811311456675686}
+  - component: {fileID: 8114550178962779264}
   m_Layer: 5
   m_Name: Navigation Station UI
   m_TagString: Untagged
@@ -705,6 +706,7 @@ MonoBehaviour:
   directionText: {fileID: 825841059467755568}
   toggleDirectionButton: {fileID: 2000797463478936544}
   openMapButton: {fileID: 662729036}
+  canvasGroup: {fileID: 8114550178962779264}
 --- !u!114 &7264811311456675686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,3 +733,15 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &8114550178962779264
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407898131199121901}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
