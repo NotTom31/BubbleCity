@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5592600569481752943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7143984211405921979}
   - component: {fileID: 4848408991320086903}
   - component: {fileID: 7143984211405921976}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fuel
   m_TagString: Fuel
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 7143984211974754100}
   - component: {fileID: 7143984211974754101}
   - component: {fileID: 2398281916970215702}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Navigation
   m_TagString: Navigation
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 7143984212161226852}
   - component: {fileID: 7143984212161226853}
   - component: {fileID: 4944277266862911952}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Temperature
   m_TagString: Temperature
   m_Icon: {fileID: 0}
