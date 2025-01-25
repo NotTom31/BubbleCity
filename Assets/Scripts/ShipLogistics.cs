@@ -41,12 +41,24 @@ public class ShipLogistics
     }
     
     
-    public float CurrentShipFuel = 1.0f;
+    private float _currentShipFuel = 1.0f;
+
+    public float CurrentShipFuel
+    {
+        get => _currentShipFuel;
+        set
+        {
+            _currentShipFuel = value;
+            _currentShipFuel = Mathf.Clamp01(_currentShipFuel);
+            OnFuelChanged?.Invoke(_currentShipFuel);
+        }
+    }
     public float CurrentShipSpeed = 1.0f;
 
     public Action<string> OnTemperatureChanged;
     public Action<string> OnNavigationDirectionChanged;
     public Action<string> OnShipMovementSpeedChanged;
+    public Action<float> OnFuelChanged;
     // UI Strings
     public string CurrentTemperatureString
     {
@@ -137,4 +149,13 @@ public class ShipLogistics
     }
     
     #endregion // UI Callbacks
+
+    public void ConsumeFuel(float deltaTime)
+    {
+        CurrentShipFuel -= deltaTime / 100.0f;
+        if (CurrentShipFuel <= 0)
+        {
+            CurrentShipFuel = 0;
+        }
+    }
 }
