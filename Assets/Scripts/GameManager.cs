@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState gameState { get; private set; } = GameState.MAIN_MENU;
+    public StationType station = StationType.None;
     public ShipLogistics Logistics = new ShipLogistics();
     
     public enum StationType
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(station);
     }
 
     private void Awake()
