@@ -7,10 +7,10 @@ using static MapNode; //for using NodeType
 public class MapRenderer : MonoBehaviour
 {
     [SerializeField] GameObject mapNodeIconPrefab;
+    [SerializeField] GameObject pointerPrefab;
     [SerializeField] GameObject dottedLinePrefab;
     [SerializeField] float layersize; //size of vertical gap between rows of icons
     [SerializeField] float startingY; //y value of first row
-    [SerializeField] float iconBuffer;
     [SerializeField] int viewDepth; //how deep into the tree the player can see
     MapNode rootNode;
     
@@ -22,9 +22,10 @@ public class MapRenderer : MonoBehaviour
     private void Awake()
     {
         rootNode = GenerateBinaryTree(5);
+        toNode = rootNode;
         fromNode = NewTerminalNode(NodeType.Clear);
         List<MapNode> list = new List<MapNode>();
-        list.Add(rootNode);
+        list.Add(toNode);
         fromNode.SetChildren(list);
     }
 
@@ -38,7 +39,8 @@ public class MapRenderer : MonoBehaviour
         float xOffset = Screen.width / 2f;
         GameObject o = Instantiate(mapNodeIconPrefab, new Vector3(xOffset, startingY, 0), Quaternion.identity, this.transform);
         fromNode.icon = o.GetComponent<MapNodeIcon>();
-        RecursiveRender(Screen.width, xOffset, startingY + layersize, rootNode, viewDepth);
+        RecursiveRender(Screen.width, xOffset, startingY + layersize, toNode, viewDepth);
+        RenderLine(fromNode.icon, toNode.icon);
     }
 
     private void RecursiveRender(float xSpace, float xOffset, float yOffset, MapNode root, int remainingDepth)
@@ -56,6 +58,18 @@ public class MapRenderer : MonoBehaviour
 
         RecursiveRender(xSpace, xOffset + xSpace / 2f, yOffset, root.GetChildNodes()[0], remainingDepth);
         RecursiveRender(xSpace, xOffset - xSpace / 2f, yOffset, root.GetChildNodes()[1], remainingDepth);
+        
+        RenderLine(root.icon, root.GetChildNodes()[0].icon);
+        RenderLine(root.icon, root.GetChildNodes()[1].icon);
+    }
+
+    private void RenderLine(MapNodeIcon parentIcon, MapNodeIcon childIcon)
+    {
+        if (parentIcon == null || childIcon == null)
+            return;
+        DottedLine line = Instantiate(dottedLinePrefab, transform).GetComponent<DottedLine>();
+        line.SetVertices(parentIcon.transform.localPosition, childIcon.transform.localPosition);
+        fromNode.icon.stem = line;
     }
 
     private MapNode NewTerminalNode(NodeType type)
