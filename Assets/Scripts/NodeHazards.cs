@@ -26,6 +26,7 @@ public class NodeHazards
     public NodeStats defaultStats;
 
     private MapNode.NodeType activeNodeType; //replace with evans enum
+    public Action<MapNode.NodeType, NodeStats> OnNodeTypeSet;
 
     public void SetNodeType(MapNode.NodeType nodeType) //replace 
     {
@@ -65,6 +66,8 @@ public class NodeHazards
         
         var stats = GetActiveNodeStats();
         GameManager.Instance.Logistics.SetTemperatureInNeedOfRegulation(stats.isCold, stats.isHot);
+        
+        OnNodeTypeSet?.Invoke(nodeType, GetActiveNodeStats());
     }
 
     public NodeStats GetActiveNodeStats()

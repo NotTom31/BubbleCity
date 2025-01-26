@@ -15,7 +15,7 @@ public class MapNodeChoiceUI : MonoBehaviour
         backgroundImage.enabled = isHighlighted;
     }
     
-    void SetNodeText(string nodeType, string nodeDescription)
+    public void SetNodeText(string nodeType, string nodeDescription)
     {
         nodeTitleText.text = nodeType;
         nodeDescriptionText.text = nodeDescription;
