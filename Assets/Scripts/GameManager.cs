@@ -113,6 +113,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Opening Node Map");
     }
 
+    public void CloseNodeMap()
+    {
+        Debug.Log("Close Node Map");
+    }
+
     public void SetStation(StationType type)
     {
         Debug.Log(type);
