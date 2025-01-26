@@ -4,9 +4,9 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private bool isSpawningEnabled = true;
-    [SerializeField] private Vector3 spawnArea;
 
     private float spawnTimer = 0f;
     private int currentSpawnIndex = 0;
@@ -28,7 +28,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Start()
     {
-        SetSpawnPoint(2);
+        SetSpawnPoint(0);
     }
 
     private void SpawnObstacle()
@@ -37,16 +37,8 @@ public class ObstacleSpawner : MonoBehaviour
         {
             Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
 
-            if (currentSpawnIndex == 0 || currentSpawnIndex == 1) // Left or Right spawn points
-            {
-                spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
-                spawnPosition.x = 0f;
-            }
-            else if (currentSpawnIndex == 2 || currentSpawnIndex == 3) // Top or Bottom spawn points
-            {
-                spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
-                spawnPosition.z = 0f;
-            }
+            spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
+            spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
 
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         }
