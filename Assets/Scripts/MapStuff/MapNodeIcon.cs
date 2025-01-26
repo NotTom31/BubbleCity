@@ -5,6 +5,7 @@ using UnityEngine;
 //This is the UI element showing a map node
 public class MapNodeIcon : MonoBehaviour
 {
+    public DottedLine stem;
     Coroutine mover;
 
     public void MoveTo(Vector3 destination, float duration)
