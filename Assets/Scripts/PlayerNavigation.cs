@@ -27,7 +27,7 @@ public class PlayerNavigation : MonoBehaviour
 
         inputScript.PointSelected += MoveToPoint;
 
-        SetWind(Vector3.right, 4f);
+        //SetWind(Vector3.right, 4f);
     }
 
     private void OnDestroy()
