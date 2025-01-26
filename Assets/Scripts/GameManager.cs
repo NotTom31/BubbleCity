@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     public NodeHazards nodeHazards;
     [SerializeField] GameObject playerObject;
     private PlayerNavigation playerNavigation;
+    private bool GameOver = false;
     
     public enum StationType
     {
@@ -39,6 +41,9 @@ public class GameManager : MonoBehaviour
     public VizEnvironmentSO warmEnvironment;
     public VizEnvironmentSO windyEnvironment;
     public VizEnvironmentSO asteroidEnvironment;
+    
+    [Header("Game Objects to Drop")]
+    public GameObject[] dropObjects;
     
     private void Awake()
     {
@@ -70,7 +75,37 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Logistics.ConsumeFuel(Time.deltaTime);
+        if (GameOver) return;
+        
+        if (!Logistics.ConsumeFuel(Time.deltaTime))
+        {
+            GameOver = true;
+            foreach (var go in dropObjects)
+            {
+                var rb = go.GetComponent<Rigidbody>();
+                if (!rb) rb = go.AddComponent<Rigidbody>();
+                if (rb)
+                {
+                    var xfm = go.GetComponent<Transform>();
+                    if (xfm) xfm.SetParent(null);
+
+                    var meshColliders = go.GetComponentsInChildren<MeshCollider>();
+                    if (meshColliders != null && meshColliders.Length > 0)
+                    {
+                        foreach (var mc in meshColliders)
+                        {
+                            mc.convex = true;
+                        }
+                    }
+
+                    var nma = go.GetComponent<NavMeshAgent>();
+                    if (nma) nma.enabled = false;
+                    
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                }
+            }
+        }
     }
 
     public void OpenNodeMap()

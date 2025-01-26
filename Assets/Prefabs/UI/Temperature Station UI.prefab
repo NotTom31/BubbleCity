@@ -600,6 +600,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperatureText: {fileID: 7631674362572914619}
   canvasGroup: {fileID: 7676688180862704372}
+  needle: {fileID: 7778542067208950042}
+  needleAngleWarm: 0
+  needleAngleCold: 70
+  needleAngleTooCold: 140
+  needleAngleHot: -70
+  needleAngleTooHot: -140
 --- !u!225 &7676688180862704372
 CanvasGroup:
   m_ObjectHideFlags: 0
