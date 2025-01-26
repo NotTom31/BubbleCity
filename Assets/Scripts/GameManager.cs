@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
             case MapNode.NodeType.Asteroid:
                 break;
             case MapNode.NodeType.Wind:
+                playerNavigation.SetWind(nodeHazards.GetActiveNodeStats().windDirection, nodeHazards.GetActiveNodeStats().windSpeed);
                 break;
             default:
                 break;
