@@ -66,6 +66,7 @@ public class PlayerNavigation : MonoBehaviour
 
     private void CheckIfReachedDestination()
     {
+        if (!navMeshAgent.enabled) return;
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             if (!hasReachedDestination)

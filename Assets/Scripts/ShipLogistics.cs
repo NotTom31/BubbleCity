@@ -19,7 +19,7 @@ public class ShipLogistics
         set
         {
             _currentTemperature = value;
-            OnTemperatureChanged?.Invoke(CurrentTemperatureString);
+            OnTemperatureChanged?.Invoke(CurrentTemperatureString, _currentTemperature);
         } 
     }
     private NavigationDirection _currentNavigationDirection = NavigationDirection.Left;
@@ -58,7 +58,7 @@ public class ShipLogistics
     }
     public float CurrentShipSpeed = 1.0f;
 
-    public Action<string> OnTemperatureChanged;
+    public Action<string, Temperature> OnTemperatureChanged;
     public Action<string> OnNavigationDirectionChanged;
     public Action<string> OnShipMovementSpeedChanged;
     public Action<float> OnFuelChanged;
@@ -152,13 +152,17 @@ public class ShipLogistics
     
     #endregion // UI Callbacks
 
-    public void ConsumeFuel(float deltaTime)
+    public bool ConsumeFuel(float deltaTime)
     {
+        bool hasFuel = CurrentShipFuel > 0;
         CurrentShipFuel -= (deltaTime / 100.0f) * FuelConsumptionRate;
         if (CurrentShipFuel <= 0)
         {
             CurrentShipFuel = 0;
+            hasFuel = false;
         }
+
+        return hasFuel;
     }
 
 }
