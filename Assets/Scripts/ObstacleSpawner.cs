@@ -23,12 +23,14 @@ public class ObstacleSpawner : MonoBehaviour
             spawnTimer = 0f;
         }
 
-        EnableSpawner();
+        
     }
 
     private void Start()
     {
         SetSpawnPoint(1);
+        //EnableSpawner();
+        DisableSpawner();
     }
 
     private void SpawnObstacle()
