@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class DottedLine : MonoBehaviour
 {
-    static readonly float X_TO_W = 128f;
-    static readonly float HEIGHT = 32f;
-    static readonly float BUFFER = 50f;
+    static readonly float X_TO_W = 72f;
+    static readonly float HEIGHT = 18f;
+    static readonly float BUFFER = 28f;
     
     Vector3 vertex0;
     Vector3 vertex1;
