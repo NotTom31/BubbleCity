@@ -25,7 +25,7 @@ public class MapRenderer : MonoBehaviour
 
     private void InitialRender()
     {
-        RecursiveRender(Screen.width, 0.0f, startingY, rootNode, viewDepth);
+        RecursiveRender(Screen.width, Screen.width / 2f, startingY, rootNode, viewDepth);
     }
 
     private void RecursiveRender(float xSpace, float xOffset, float yOffset, MapNode root, int remainingDepth)
