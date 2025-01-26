@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public NodeHazards nodeHazards;
     [SerializeField] GameObject playerObject;
     [SerializeField] MapNavigator mapNavigator;
+    [SerializeField] ObstacleSpawner obstacleSpawner;
     private PlayerNavigation playerNavigation;
     private bool GameOver = false;
     
@@ -91,6 +92,25 @@ public class GameManager : MonoBehaviour
                 break;
             case MapNode.NodeType.Wind:
                 playerNavigation.SetWind(nodeHazards.GetActiveNodeStats().windDirection, nodeHazards.GetActiveNodeStats().windSpeed);
+                obstacleSpawner.EnableSpawner();
+
+                if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.left)
+                {
+
+                }
+                else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.right)
+                {
+
+                }
+                else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.forward)
+                {
+
+                }
+                else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.back)
+                {
+
+                }
+
                 break;
             default:
                 break;
