@@ -28,6 +28,7 @@ public class MapRenderer : MonoBehaviour
         float xOffset = Screen.width / 2f;
         GameObject o = Instantiate(mapNodeIconPrefab, new Vector3(xOffset, startingY, 0), Quaternion.identity, this.transform);
         nav.GetFromNode().icon = o.GetComponent<MapNodeIcon>();
+        nav.GetFromNode().icon.SetImage(GetSprite(nav.GetFromNode().GetNodeType()));
         RecursiveRender(Screen.width, xOffset, startingY + layersize, nav.GetToNode(), viewDepth);
         RenderLine(nav.GetFromNode().icon, nav.GetToNode().icon);
         pointer = Instantiate(pointerPrefab, nav.GetFromNode().icon.transform.position, Quaternion.identity, this.transform).transform;
@@ -39,6 +40,7 @@ public class MapRenderer : MonoBehaviour
             return;
         GameObject o = Instantiate(mapNodeIconPrefab, new Vector3(xOffset, yOffset, 0), Quaternion.identity, this.transform);
         root.icon = o.GetComponent<MapNodeIcon>();
+        root.icon.SetImage(GetSprite(root.GetNodeType()));
 
         if (root.GetChildNodes().Count == 0)
             return;
@@ -79,5 +81,10 @@ public class MapRenderer : MonoBehaviour
     {
         nav = navi;
         nav.OnReachNode += ReachNodeRerender;
+    }
+
+    public Sprite GetSprite(NodeType t)
+    {
+        return nodeIconSprites[(int)t];
     }
 }

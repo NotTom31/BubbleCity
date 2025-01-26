@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.UI;
+using static MapNode;
 
 //This is the UI element showing a map node
 public class MapNodeIcon : MonoBehaviour
@@ -26,5 +29,10 @@ public class MapNodeIcon : MonoBehaviour
         }
         transform.position = destination;
         mover = null;
+    }
+
+    public void SetImage(Sprite s)
+    {
+        GetComponent<Image>().sprite = s;
     }
 }

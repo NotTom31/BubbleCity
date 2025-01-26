@@ -70,7 +70,7 @@ public class MapNavigator : MonoBehaviour
             List<MapNode> children = new List<MapNode>();
             children.Add(GenerateBinaryTree(depth - 1));
             children.Add(GenerateBinaryTree(depth - 1));
-            return NewParentNode(NodeType.Cold, children);
+            return NewParentNode(RandomType(), children);
         }
     }
 
@@ -82,6 +82,14 @@ public class MapNavigator : MonoBehaviour
     private MapNode NewParentNode(NodeType type, List<MapNode> children)
     {
         return new MapNode(type, children);
+    }
+
+    private NodeType RandomType(bool includeClear = false)
+    {
+        int start = 1;
+        if (includeClear)
+            start = 0;
+        return (NodeType)UnityEngine.Random.Range(start, Enum.GetValues(typeof(NodeType)).Length);
     }
 
     public MapNode GetFromNode()
