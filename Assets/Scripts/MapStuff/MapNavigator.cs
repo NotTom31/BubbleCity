@@ -88,4 +88,9 @@ public class MapNavigator : MonoBehaviour
     {
         return toNode;
     }
+
+    public void SetRendererActive(bool active)
+    {
+        mRenderer.gameObject.SetActive(active);
+    }
 }
