@@ -26,7 +26,7 @@ public class NodeHazards
     public NodeStats defaultStats;
 
     private MapNode.NodeType activeNodeType; //replace with evans enum
-    public Action<MapNode.NodeType, NodeStats> OnNodeTypeSet;
+    public event Action<MapNode.NodeType, NodeStats> OnNodeTypeSet;
 
     public void SetNodeType(MapNode.NodeType nodeType) //replace 
     {

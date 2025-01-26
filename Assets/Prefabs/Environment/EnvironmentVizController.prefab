@@ -45,6 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 11400000, guid: 9238cbe9674ec514090da9c99c28e7cc, type: 2}
+  Entries:
+  - Type: 0
+    ParticlePrefab: {fileID: 0}
+    Settings: {fileID: 11400000, guid: 9238cbe9674ec514090da9c99c28e7cc, type: 2}
+  - Type: 1
+    ParticlePrefab: {fileID: 6954499162505064602, guid: 2f6ecdeeffa12a14ca53430db11cb0aa, type: 3}
+    Settings: {fileID: 11400000, guid: c98ed646960d35148b0fd58e7ba32cbb, type: 2}
+  - Type: 2
+    ParticlePrefab: {fileID: 0}
+    Settings: {fileID: 11400000, guid: 997c1a71d8708be49900d79ca4782c36, type: 2}
+  - Type: 3
+    ParticlePrefab: {fileID: 6450024899126530773, guid: 51abeafee2a1a5d48a47833ce52e5441, type: 3}
+    Settings: {fileID: 11400000, guid: 1e4d6dde5957c77409ae080e1518efcf, type: 2}
+  - Type: 4
+    ParticlePrefab: {fileID: 0}
+    Settings: {fileID: 11400000, guid: a0751427e00429b479a309ea538daa63, type: 2}
+  - Type: 5
+    ParticlePrefab: {fileID: 5994886504936412294, guid: cbb16c7368084be468e6c4ef7bd92b21, type: 3}
+    Settings: {fileID: 11400000, guid: dc27a6e45c56fe04abd8c94b0feafc4f, type: 2}
   EnableBlending: 1
   BlendSpeed: 1
   SceneLight: {fileID: 0}
