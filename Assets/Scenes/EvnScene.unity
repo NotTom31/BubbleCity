@@ -405,8 +405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapNodeIconPrefab: {fileID: 2300414427121885532, guid: 75ed17490a9892945822f09ab50006d0, type: 3}
   dottedLinePrefab: {fileID: 0}
-  layersize: 140
-  startingY: 75
+  layersize: 110
+  startingY: 50
   iconBuffer: 0
   viewDepth: 4
 --- !u!1 &1381227434
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.83318794, b: 0.5415094, a: 1}
+  m_Color: {r: 0.5411765, g: 0.99559224, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

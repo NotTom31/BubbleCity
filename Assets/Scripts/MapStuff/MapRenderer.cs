@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using static MapNode; //for using NodeType
 
@@ -12,10 +13,19 @@ public class MapRenderer : MonoBehaviour
     [SerializeField] float iconBuffer;
     [SerializeField] int viewDepth; //how deep into the tree the player can see
     MapNode rootNode;
+    
+
+    MapNode fromNode; //Node the ship is currently leaving
+    MapNode toNode; //Node the ship is heading toward
+    float segmentProgress;
 
     private void Awake()
     {
         rootNode = GenerateBinaryTree(5);
+        fromNode = NewTerminalNode(NodeType.Clear);
+        List<MapNode> list = new List<MapNode>();
+        list.Add(rootNode);
+        fromNode.SetChildren(list);
     }
 
     private void Start()
@@ -25,7 +35,10 @@ public class MapRenderer : MonoBehaviour
 
     private void InitialRender()
     {
-        RecursiveRender(Screen.width, Screen.width / 2f, startingY, rootNode, viewDepth);
+        float xOffset = Screen.width / 2f;
+        GameObject o = Instantiate(mapNodeIconPrefab, new Vector3(xOffset, startingY, 0), Quaternion.identity, this.transform);
+        fromNode.icon = o.GetComponent<MapNodeIcon>();
+        RecursiveRender(Screen.width, xOffset, startingY + layersize, rootNode, viewDepth);
     }
 
     private void RecursiveRender(float xSpace, float xOffset, float yOffset, MapNode root, int remainingDepth)
@@ -71,5 +84,12 @@ public class MapRenderer : MonoBehaviour
         }
     }
 
-
+    public MapNode GetFromNode()
+    {
+        return fromNode;
+    }
+    public MapNode GetToNode()
+    {
+        return toNode;
+    }
 }
