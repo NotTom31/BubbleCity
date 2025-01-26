@@ -94,7 +94,7 @@ public class NodeHazards
         Vector3.down
         };
 
-        int randomIndex = Random.Range(0, windDirections.Length);
+        int randomIndex = UnityEngine.Random.Range(0, windDirections.Length);
         return windDirections[randomIndex];
     }
 
@@ -148,7 +148,7 @@ public class NodeHazards
             fuelConsumptionMult = 1.2f,
             isCold = false,
             isHot = false,
-            windSpeed = Random.Range(1f, 4f),
+            windSpeed = UnityEngine.Random.Range(1f, 4f),
             windDirection = GetRandomWindDirection()
         };
 
