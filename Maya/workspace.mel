@@ -6,4 +6,5 @@ workspace -fr "mayaAscii" "";
 workspace -fr "NX_ATF Export" "data";
 workspace -fr "particles" "particles";
 workspace -fr "mayaBinary" "";
+workspace -fr "templates" "assets";
 workspace -fr "sourceImages" "";
