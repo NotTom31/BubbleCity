@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -41,5 +42,16 @@ public class TitleMenuController : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+    
+    public void ButtonOnPointerEnterCallback(BaseEventData eventData)
+    {
+        // Debug.Log("Pointer Enter");
+    }
+
+    public void ButtonOnClick()
+    {
+        // Debug.Log("Button Clicked");
+
     }
 }
