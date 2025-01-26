@@ -18,7 +18,7 @@ public class NodeHazards : MonoBehaviour
         public float playerSpeedMult;
         public float refuelAmount;
         public float rockAmount;
-        public float fuelConsumption;
+        public float fuelConsumptionMult;
         public bool isCold;
         public bool isHot;
         public bool isWind;
@@ -29,11 +29,33 @@ public class NodeHazards : MonoBehaviour
     public NodeStats asteroidStats;
     public NodeStats windStats;
     public NodeStats thunderStats;
+    public NodeStats defaultStats;
 
-    public void SetNodeType() //recieve this from evans node enum
+    private NodeTypePlaceholder activeNodeType; //replace with evans enum
+
+    public void SetNodeType(NodeTypePlaceholder nodeType) //replace 
     {
+        activeNodeType = nodeType;
+    }
 
-
+    public NodeStats GetActiveNodeStats()
+    {
+        switch (activeNodeType)
+        {
+            case NodeTypePlaceholder.COLD:
+                return coldStats;
+            case NodeTypePlaceholder.HEAT:
+                return heatStats;
+            case NodeTypePlaceholder.ASTEROID:
+                return asteroidStats;
+            case NodeTypePlaceholder.WIND:
+                return windStats;
+            case NodeTypePlaceholder.THUNDER:
+                return thunderStats;
+            default:
+                Debug.LogWarning("Invalid node type.");
+                return new NodeStats();
+        }
     }
 
     private void Start()
@@ -44,7 +66,7 @@ public class NodeHazards : MonoBehaviour
             playerSpeedMult = 0.8f,
             refuelAmount = 0f,
             rockAmount = 0f,
-            fuelConsumption = 0.0f,
+            fuelConsumptionMult = 1.0f,
             isCold = true,
             isHot = false,
             isWind = false
@@ -56,7 +78,7 @@ public class NodeHazards : MonoBehaviour
             playerSpeedMult = 0.9f,
             refuelAmount = 50f,
             rockAmount = 10f,
-            fuelConsumption = 0.0f,
+            fuelConsumptionMult = 0.8f,
             isCold = false,
             isHot = true,
             isWind = false
@@ -64,11 +86,11 @@ public class NodeHazards : MonoBehaviour
 
         asteroidStats = new NodeStats
         {
-            shipSpeedMult = 1.2f,
+            shipSpeedMult = 1f,
             playerSpeedMult = 0.9f,
             refuelAmount = 50f,
             rockAmount = 10f,
-            fuelConsumption = 0.0f,
+            fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = true,
             isWind = false
@@ -80,7 +102,19 @@ public class NodeHazards : MonoBehaviour
             playerSpeedMult = 1f,
             refuelAmount = 0f,
             rockAmount = 0f,
-            fuelConsumption = 0.0f,
+            fuelConsumptionMult = 1.2f,
+            isCold = false,
+            isHot = false,
+            isWind = true
+        };
+
+        defaultStats = new NodeStats
+        {
+            shipSpeedMult = 1f,
+            playerSpeedMult = 1f,
+            refuelAmount = 0f,
+            rockAmount = 0f,
+            fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = false,
             isWind = true
