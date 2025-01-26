@@ -20,6 +20,7 @@ public class MapRenderer : MonoBehaviour
     private void Start()
     {
         InitialRender();
+        gameObject.SetActive(false);
     }
 
     private void InitialRender()

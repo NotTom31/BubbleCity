@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseNodeMap()
     {
-        Debug.Log("Close Node Map");
+        mapNavigator.SetRendererActive(false);
     }
 
     public void SetStation(StationType type)

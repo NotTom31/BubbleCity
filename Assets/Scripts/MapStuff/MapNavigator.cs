@@ -47,7 +47,11 @@ public class MapNavigator : MonoBehaviour
         {
             ReachNodeEvent(toNode);
             fromNode = toNode;
-            toNode = fromNode.GetChildNodes()[0]; //TODO: check to see which direction we're navigating
+            NavigationDirection dir = GameManager.Instance.Logistics.CurrentNavigationDirection;
+            if (dir == NavigationDirection.Left)
+                toNode = fromNode.GetChildNodes()[0];
+            else
+                toNode = fromNode.GetChildNodes()[1];
             segmentProgress = 0f;
         }
         else
