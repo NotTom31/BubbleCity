@@ -81,6 +81,4 @@ public class ObstacleSpawner : MonoBehaviour
     public void ToggleSpawner() => isSpawningEnabled = !isSpawningEnabled;
 
     public void SetSpawnInterval(float interval) => spawnInterval = Mathf.Max(0.1f, interval);
-
-    public void SetSpawnArea(Vector3 area) => spawnArea = area;
 }

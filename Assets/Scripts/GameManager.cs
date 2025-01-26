@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         switch (node.GetNodeType())
         {
             case MapNode.NodeType.Clear:
+                obstacleSpawner.DisableSpawner();
                 break;
             case MapNode.NodeType.Cold:
                 break;
@@ -96,19 +97,19 @@ public class GameManager : MonoBehaviour
 
                 if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.left)
                 {
-
+                    obstacleSpawner.SetSpawnPoint(0);
                 }
                 else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.right)
                 {
-
+                    obstacleSpawner.SetSpawnPoint(1);
                 }
                 else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.forward)
                 {
-
+                    obstacleSpawner.SetSpawnPoint(2);
                 }
                 else if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.back)
                 {
-
+                    obstacleSpawner.SetSpawnPoint(3);
                 }
 
                 break;
