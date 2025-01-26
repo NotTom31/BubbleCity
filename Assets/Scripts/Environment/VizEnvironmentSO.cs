@@ -7,4 +7,7 @@ public class VizEnvironmentSO : ScriptableObject
 {
     public Color SkyColor = Color.white;
     public Color LightColor = Color.white;
+    public Color AmbientColor = Color.black;
+    public Color FogColor = Color.white;
+    public float FogDistance = 300.0f;
 }

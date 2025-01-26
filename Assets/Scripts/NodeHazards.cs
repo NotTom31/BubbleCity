@@ -1,15 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum NodeTypePlaceholder
-{
-    COLD,
-    HEAT,
-    ASTEROID,
-    WIND,
-    THUNDER,
-    DEFAULT
-}
 
 public class NodeHazards
 {
@@ -22,7 +14,8 @@ public class NodeHazards
         public float fuelConsumptionMult;
         public bool isCold;
         public bool isHot;
-        public bool isWind;
+        public float windSpeed;
+        public Vector3 windDirection;
     }
 
     public NodeStats coldStats;
@@ -32,33 +25,77 @@ public class NodeHazards
     public NodeStats thunderStats;
     public NodeStats defaultStats;
 
-    private NodeTypePlaceholder activeNodeType; //replace with evans enum
+    private MapNode.NodeType activeNodeType; //replace with evans enum
 
-    public void SetNodeType(NodeTypePlaceholder nodeType) //replace 
+    public void SetNodeType(MapNode.NodeType nodeType) //replace 
     {
         activeNodeType = nodeType;
+
+        switch (activeNodeType)
+        {
+            case MapNode.NodeType.Clear:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.calmEnvironment);
+                break;
+            case MapNode.NodeType.Cold:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.coldEnvironment);
+                break;
+            case MapNode.NodeType.Heat:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.warmEnvironment);
+                break;
+            case MapNode.NodeType.Wind:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.windyEnvironment);
+                break;
+            case MapNode.NodeType.Thunder:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.windyEnvironment);
+                break;
+            case MapNode.NodeType.Asteroid:
+                GameManager.Instance.environmentVisualController.SetTargetEnvironmentSettings(
+                    GameManager.Instance.asteroidEnvironment);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public NodeStats GetActiveNodeStats()
     {
         switch (activeNodeType)
         {
-            case NodeTypePlaceholder.COLD:
+            case MapNode.NodeType.Cold:
                 return coldStats;
-            case NodeTypePlaceholder.HEAT:
+            case MapNode.NodeType.Heat:
                 return heatStats;
-            case NodeTypePlaceholder.ASTEROID:
+            case MapNode.NodeType.Asteroid:
                 return asteroidStats;
-            case NodeTypePlaceholder.WIND:
+            case MapNode.NodeType.Wind:
                 return windStats;
-            case NodeTypePlaceholder.THUNDER:
+            case MapNode.NodeType.Thunder:
                 return thunderStats;
-            case NodeTypePlaceholder.DEFAULT:
+            case MapNode.NodeType.Clear:
                 return defaultStats;
             default:
                 Debug.LogWarning("Invalid node type.");
                 return defaultStats;
         }
+    }
+
+    private Vector3 GetRandomWindDirection()
+    {
+        Vector3[] windDirections = new Vector3[]
+        {
+        Vector3.left,
+        Vector3.right,
+        Vector3.up,
+        Vector3.down
+        };
+
+        int randomIndex = UnityEngine.Random.Range(0, windDirections.Length);
+        return windDirections[randomIndex];
     }
 
     public void Initialize()
@@ -72,7 +109,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = true,
             isHot = false,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         heatStats = new NodeStats
@@ -84,7 +122,8 @@ public class NodeHazards
             fuelConsumptionMult = 0.8f,
             isCold = false,
             isHot = true,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         asteroidStats = new NodeStats
@@ -96,7 +135,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = true,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         windStats = new NodeStats
@@ -108,7 +148,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.2f,
             isCold = false,
             isHot = false,
-            isWind = true
+            windSpeed = UnityEngine.Random.Range(1f, 4f),
+            windDirection = GetRandomWindDirection()
         };
 
         defaultStats = new NodeStats
@@ -120,7 +161,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = false,
-            isWind = true
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
     }
 }
