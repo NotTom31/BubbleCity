@@ -40,6 +40,11 @@ public class PlayerNavigation : MonoBehaviour
         }
     }
 
+    public void SetSpeed(float speed)
+    {
+        navMeshAgent.speed = speed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         switch (other.gameObject.tag)

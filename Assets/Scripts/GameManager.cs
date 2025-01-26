@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public StationType station = StationType.None;
     public ShipLogistics Logistics = new ShipLogistics();
     public NodeHazards nodeHazards;
+    [SerializeField] GameObject playerObject;
+    private PlayerNavigation playerNavigation;
     
     public enum StationType
     {
@@ -49,6 +51,11 @@ public class GameManager : MonoBehaviour
     {
         nodeHazards = new NodeHazards();
         nodeHazards.Initialize();
+        if (playerObject == null)
+        {
+            playerObject = GameObject.FindWithTag("Player");
+            playerNavigation = playerObject.GetComponent<PlayerNavigation>();
+        }
     }
 
     // Update is called once per frame
@@ -86,6 +93,11 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetPlayerSpeed(float speed)
+    {
+        playerNavigation.SetSpeed(speed);
     }
 }
 

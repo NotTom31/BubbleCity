@@ -11,6 +11,7 @@ public class MapNode
 
     public enum NodeType
     {
+        Clear,
         Cold,
         Heat,
         Wind,
