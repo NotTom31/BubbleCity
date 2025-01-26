@@ -40,8 +40,7 @@ public class MapNavigator : MonoBehaviour
     {
         if (!moving)
             return;
-        //float speed = GameManager.Instance.Logistics.ShipMovementSpeed;
-        float speed = 10f;
+        float speed = GameManager.Instance.Logistics.ShipMovementSpeed;
         segmentProgress += speed * Time.deltaTime * SPEED_COEFFICIENT;
         if (segmentProgress >= 1f)
         {
