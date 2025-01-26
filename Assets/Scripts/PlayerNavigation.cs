@@ -6,6 +6,11 @@ public class PlayerNavigation : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Input inputScript;
 
+    private Vector3 windForce = Vector3.zero;
+    private float windStrength;
+
+    private bool hasReachedDestination = false;
+
     private void Start()
     {
         GameManager.Instance.SetStation(GameManager.StationType.None);
@@ -21,6 +26,8 @@ public class PlayerNavigation : MonoBehaviour
         }
 
         inputScript.PointSelected += MoveToPoint;
+
+        //SetWind(Vector3.right, 4f);
     }
 
     private void OnDestroy()
@@ -28,11 +35,28 @@ public class PlayerNavigation : MonoBehaviour
         inputScript.PointSelected -= MoveToPoint;
     }
 
+    private void Update()
+    {
+        ApplyWindForce();
+        CheckIfReachedDestination(); //We will get stuck navigating in the wind without this
+    }
+
+    private void ApplyWindForce()
+    {
+        if (windForce != Vector3.zero)
+        {
+            Vector3 windVelocity = windForce.normalized * windStrength * Time.deltaTime;
+            navMeshAgent.Move(windVelocity);
+        }
+    }
+
     private void MoveToPoint(Vector3 point)
     {
         if (NavMesh.SamplePosition(point, out NavMeshHit navMeshHit, 1.0f, NavMesh.AllAreas))
         {
             navMeshAgent.SetDestination(navMeshHit.position);
+            navMeshAgent.isStopped = false;
+            hasReachedDestination = false;
         }
         else
         {
@@ -40,9 +64,33 @@ public class PlayerNavigation : MonoBehaviour
         }
     }
 
+    private void CheckIfReachedDestination()
+    {
+        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            if (!hasReachedDestination)
+            {
+                hasReachedDestination = true;
+                OnReachedDestination();
+            }
+        }
+    }
+
+    private void OnReachedDestination()
+    {
+        navMeshAgent.isStopped = true;
+        //Debug.Log("Destination reached!");
+    }
+
     public void SetSpeed(float speed)
     {
         navMeshAgent.speed = speed;
+    }
+
+    public void SetWind(Vector3 direction, float strength)
+    {
+        windForce = direction.normalized;
+        windStrength = strength;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,6 +108,7 @@ public class PlayerNavigation : MonoBehaviour
                 break;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         switch (other.gameObject.tag)
