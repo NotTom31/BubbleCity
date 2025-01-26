@@ -137,6 +137,11 @@ public class GameManager : MonoBehaviour
         mapNavigator.SetRendererActive(true);
     }
 
+    public void CloseNodeMap()
+    {
+        Debug.Log("Close Node Map");
+    }
+
     public void SetStation(StationType type)
     {
         Debug.Log(type);
