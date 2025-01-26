@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public ShipLogistics Logistics = new ShipLogistics();
     public NodeHazards nodeHazards;
     [SerializeField] GameObject playerObject;
+    [SerializeField] MapNavigator mapNavigator;
     private PlayerNavigation playerNavigation;
     private bool GameOver = false;
     
@@ -69,6 +70,29 @@ public class GameManager : MonoBehaviour
         {
             playerObject = GameObject.FindWithTag("Player");
             playerNavigation = playerObject.GetComponent<PlayerNavigation>();
+        }
+
+        mapNavigator.OnReachNode += NodeReached;
+    }
+
+    private void NodeReached(MapNode node)
+    {
+        //Debug.Log("heres where we reach a node in GameManager :)");
+        //node.GetNodeType();
+        switch (node.GetNodeType())
+        {
+            case MapNode.NodeType.Clear:
+                break;
+            case MapNode.NodeType.Cold:
+                break;
+            case MapNode.NodeType.Heat:
+                break;
+            case MapNode.NodeType.Asteroid:
+                break;
+            case MapNode.NodeType.Wind:
+                break;
+            default:
+                break;
         }
     }
 
