@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenNodeMap()
     {
-        Debug.Log("Opening Node Map");
+        mapNavigator.SetRendererActive(true);
     }
 
     public void CloseNodeMap()
