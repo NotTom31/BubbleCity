@@ -12,22 +12,10 @@ public class MapRenderer : MonoBehaviour
     [SerializeField] float layersize; //size of vertical gap between rows of icons
     [SerializeField] float startingY; //y value of first row
     [SerializeField] int viewDepth; //how deep into the tree the player can see
-    MapNode rootNode;
-    
+    [SerializeField] Sprite[] nodeIconSprites;
 
-    MapNode fromNode; //Node the ship is currently leaving
-    MapNode toNode; //Node the ship is heading toward
-    float segmentProgress;
-
-    private void Awake()
-    {
-        rootNode = GenerateBinaryTree(5);
-        toNode = rootNode;
-        fromNode = NewTerminalNode(NodeType.Clear);
-        List<MapNode> list = new List<MapNode>();
-        list.Add(toNode);
-        fromNode.SetChildren(list);
-    }
+    MapNavigator nav;
+    Transform pointer;
 
     private void Start()
     {
@@ -38,9 +26,10 @@ public class MapRenderer : MonoBehaviour
     {
         float xOffset = Screen.width / 2f;
         GameObject o = Instantiate(mapNodeIconPrefab, new Vector3(xOffset, startingY, 0), Quaternion.identity, this.transform);
-        fromNode.icon = o.GetComponent<MapNodeIcon>();
-        RecursiveRender(Screen.width, xOffset, startingY + layersize, toNode, viewDepth);
-        RenderLine(fromNode.icon, toNode.icon);
+        nav.GetFromNode().icon = o.GetComponent<MapNodeIcon>();
+        RecursiveRender(Screen.width, xOffset, startingY + layersize, nav.GetToNode(), viewDepth);
+        RenderLine(nav.GetFromNode().icon, nav.GetToNode().icon);
+        pointer = Instantiate(pointerPrefab, nav.GetFromNode().icon.transform.position, Quaternion.identity, this.transform).transform;
     }
 
     private void RecursiveRender(float xSpace, float xOffset, float yOffset, MapNode root, int remainingDepth)
@@ -69,41 +58,24 @@ public class MapRenderer : MonoBehaviour
             return;
         DottedLine line = Instantiate(dottedLinePrefab, transform).GetComponent<DottedLine>();
         line.SetVertices(parentIcon.transform.localPosition, childIcon.transform.localPosition);
-        fromNode.icon.stem = line;
+        nav.GetFromNode().icon.stem = line;
     }
 
-    private MapNode NewTerminalNode(NodeType type)
+    //updates position of the pointer showing where the player is
+    public void UpdatePointer(float segment_progress)
     {
-        return new MapNode(type);
+        pointer.localPosition = Vector3.Lerp(nav.GetFromNode().icon.transform.localPosition,
+                                        nav.GetToNode().icon.transform.localPosition, segment_progress);
     }
 
-    private MapNode NewParentNode(NodeType type, List<MapNode> children)
+    private void ReachNodeRerender(MapNode reached)
     {
-        return new MapNode(type, children);
+        //TODO: cull half the nodes and re-order everything
     }
 
-    //creates a map node graph with exclusively binary branching and arbitrary node types
-    private MapNode GenerateBinaryTree(int depth)
+    public void SetNavigator(MapNavigator navi)
     {
-        if (depth == 0)
-            return null;
-        else if (depth == 1)
-            return NewTerminalNode(NodeType.Cold);
-        else
-        {
-            List<MapNode> children = new List<MapNode>();
-            children.Add(GenerateBinaryTree(depth - 1));
-            children.Add(GenerateBinaryTree(depth - 1));
-            return NewParentNode(NodeType.Cold, children);
-        }
-    }
-
-    public MapNode GetFromNode()
-    {
-        return fromNode;
-    }
-    public MapNode GetToNode()
-    {
-        return toNode;
+        nav = navi;
+        nav.OnReachNode += ReachNodeRerender;
     }
 }
