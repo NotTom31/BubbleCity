@@ -37,13 +37,13 @@ public class FuelStationUI : MonoBehaviour
         fuelText.text = Mathf.FloorToInt(newFuelAmount * 100).ToString();
         fuelFillMeter.fillAmount = Mathf.Clamp01(newFuelAmount / 100.0f);
 
-        GameManager.Instance.Logistics.OnShipMovementSpeedChanged += OnShipMovementSpeedSettingChanged;
+        GameManager.Instance.Logistics.OnShipMovementSpeedSettingChanged += OnShipMovementSpeedSettingChanged;
         OnShipMovementSpeedSettingChanged(GameManager.Instance.Logistics.CurrentShipMovementSpeedSettingString);
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.Logistics.OnShipMovementSpeedChanged -= OnShipMovementSpeedSettingChanged;
+        GameManager.Instance.Logistics.OnShipMovementSpeedSettingChanged -= OnShipMovementSpeedSettingChanged;
     }
 
     private void OnShipMovementSpeedSettingChanged(string newSetting)

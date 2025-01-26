@@ -30,6 +30,8 @@ public class NodeHazards
     public void SetNodeType(MapNode.NodeType nodeType) //replace 
     {
         activeNodeType = nodeType;
+        
+        Debug.Log("Setting Node Type: " + activeNodeType);
 
         switch (activeNodeType)
         {
@@ -60,6 +62,9 @@ public class NodeHazards
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        
+        var stats = GetActiveNodeStats();
+        GameManager.Instance.Logistics.SetTemperatureInNeedOfRegulation(stats.isCold, stats.isHot);
     }
 
     public NodeStats GetActiveNodeStats()
