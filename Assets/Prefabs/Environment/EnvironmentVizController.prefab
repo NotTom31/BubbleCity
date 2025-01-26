@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 11400000, guid: 9238cbe9674ec514090da9c99c28e7cc, type: 2}
+  CloudSystemPrefab: {fileID: 7663519937160099179, guid: c9f1d4b3ad1e96244ad6b052f99c670e, type: 3}
   Entries:
   - Type: 0
     ParticlePrefab: {fileID: 0}
