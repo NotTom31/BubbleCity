@@ -159,6 +159,7 @@ MonoBehaviour:
     temperatureRegulationTargetClicks: 10
   playerObject: {fileID: 0}
   mapNavigator: {fileID: 8645146610678432545}
+  obstacleSpawner: {fileID: 0}
   temperatureStationUI: {fileID: 6225967056286104506}
   fuelStationUI: {fileID: 719698867839408807}
   navigationStationUI: {fileID: 2234471669912247680}
@@ -312,6 +313,46 @@ PrefabInstance:
     - target: {fileID: 2963514717021439050, guid: a6187000c108db640a6d750116ddcc41, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1109936185151697356}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseNodeMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908646321380429775, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534893659301818556, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1714
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534893659301818556, guid: a6187000c108db640a6d750116ddcc41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1821
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6187000c108db640a6d750116ddcc41, type: 3}
