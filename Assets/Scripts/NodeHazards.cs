@@ -22,7 +22,8 @@ public class NodeHazards
         public float fuelConsumptionMult;
         public bool isCold;
         public bool isHot;
-        public bool isWind;
+        public float windSpeed;
+        public Vector3 windDirection;
     }
 
     public NodeStats coldStats;
@@ -61,6 +62,20 @@ public class NodeHazards
         }
     }
 
+    private Vector3 GetRandomWindDirection()
+    {
+        Vector3[] windDirections = new Vector3[]
+        {
+        Vector3.left,
+        Vector3.right,
+        Vector3.up,
+        Vector3.down
+        };
+
+        int randomIndex = Random.Range(0, windDirections.Length);
+        return windDirections[randomIndex];
+    }
+
     public void Initialize()
     {
         coldStats = new NodeStats
@@ -72,7 +87,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = true,
             isHot = false,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         heatStats = new NodeStats
@@ -84,7 +100,8 @@ public class NodeHazards
             fuelConsumptionMult = 0.8f,
             isCold = false,
             isHot = true,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         asteroidStats = new NodeStats
@@ -96,7 +113,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = true,
-            isWind = false
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
 
         windStats = new NodeStats
@@ -108,7 +126,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.2f,
             isCold = false,
             isHot = false,
-            isWind = true
+            windSpeed = Random.Range(1f, 4f),
+            windDirection = GetRandomWindDirection()
         };
 
         defaultStats = new NodeStats
@@ -120,7 +139,8 @@ public class NodeHazards
             fuelConsumptionMult = 1.0f,
             isCold = false,
             isHot = false,
-            isWind = true
+            windSpeed = 0f,
+            windDirection = Vector3.zero
         };
     }
 }
