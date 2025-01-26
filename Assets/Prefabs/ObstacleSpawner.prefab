@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 7532254769486361715}
   - {fileID: 7532254770320141046}
   - {fileID: 7532254770634471762}
-  spawnArea: {x: 10, y: 0, z: 0}
+  spawnArea: {x: 10, y: 0, z: 10}
   spawnInterval: 2
   isSpawningEnabled: 1
 --- !u!1 &7532254769486361715

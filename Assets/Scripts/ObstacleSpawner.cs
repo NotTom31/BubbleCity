@@ -28,17 +28,28 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Start()
     {
-        SetSpawnPoint(0);
+        SetSpawnPoint(1);
     }
 
     private void SpawnObstacle()
     {
-        if (spawnPoints.Length > 0 && currentSpawnIndex >= 0 && currentSpawnIndex < spawnPoints.Length)
+        if (spawnPoints.Length > 0 && currentSpawnIndex == 0 || currentSpawnIndex == 1 && currentSpawnIndex < spawnPoints.Length)
+        {
+            Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
+
+            //spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
+            spawnPosition.x += 0f;
+            spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
+
+            Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        }
+        else if (spawnPoints.Length > 0 && currentSpawnIndex == 2 || currentSpawnIndex == 3 && currentSpawnIndex < spawnPoints.Length)
         {
             Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
 
             spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
-            spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
+            spawnPosition.z += 0f;
+            //spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
 
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         }
