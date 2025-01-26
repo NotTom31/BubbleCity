@@ -7,7 +7,8 @@ public enum NodeTypePlaceholder
     HEAT,
     ASTEROID,
     WIND,
-    THUNDER
+    THUNDER,
+    DEFAULT
 }
 
 public class NodeHazards : MonoBehaviour
@@ -52,9 +53,11 @@ public class NodeHazards : MonoBehaviour
                 return windStats;
             case NodeTypePlaceholder.THUNDER:
                 return thunderStats;
+            case NodeTypePlaceholder.DEFAULT:
+                return defaultStats;
             default:
                 Debug.LogWarning("Invalid node type.");
-                return new NodeStats();
+                return defaultStats;
         }
     }
 
