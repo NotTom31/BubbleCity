@@ -72,7 +72,7 @@ public class NavigationStationUI : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.interactable = false;
-        GameManager.Instance.CloseNodeMap();
+        // GameManager.Instance.CloseNodeMap();
     }
     
     public void SetUpcomingNodes(MapNode leftNode, MapNode rightNode)
