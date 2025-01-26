@@ -62,7 +62,7 @@ MonoBehaviour:
   mapNodeIconPrefab: {fileID: 2300414427121885532, guid: 75ed17490a9892945822f09ab50006d0, type: 3}
   pointerPrefab: {fileID: 4055915978862738498, guid: 7d0d8c790014b544ba6c3167aa5b35bf, type: 3}
   dottedLinePrefab: {fileID: 4947834361393201604, guid: 9332c5584fd398b41835be9df33f8fab, type: 3}
-  layersize: 110
+  layersize: 100
   startingY: 50
   viewDepth: 4
   nodeIconSprites:
