@@ -38,7 +38,7 @@ public class Obstacle : MonoBehaviour
 
     void PushObstacle()
     {
-        transform.position += windDirection * windStrength * Time.deltaTime;
+        transform.position -= windDirection * windStrength * Time.deltaTime;
 
         float newY = startPosition.y + Mathf.Sin(Time.time * oscillationSpeed) * oscillationAmplitude;
 

@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
                 break;
             case MapNode.NodeType.Wind:
                 playerNavigation.SetWind(nodeHazards.GetActiveNodeStats().windDirection, nodeHazards.GetActiveNodeStats().windSpeed);
+                Debug.Log(nodeHazards.GetActiveNodeStats().windDirection + "" + nodeHazards.GetActiveNodeStats().windSpeed);
                 obstacleSpawner.EnableSpawner();
 
                 if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.left)
