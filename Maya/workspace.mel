@@ -1,0 +1,9 @@
+//Maya 2025 Project Definition
+
+workspace -fr "images" "";
+workspace -fr "autoSave" "";
+workspace -fr "mayaAscii" "";
+workspace -fr "NX_ATF Export" "data";
+workspace -fr "particles" "particles";
+workspace -fr "mayaBinary" "";
+workspace -fr "sourceImages" "";
