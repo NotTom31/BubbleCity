@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
+using static UnityEngine.ParticleSystem;
 
 public class EnvironmentVisualController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class EnvironmentVisualController : MonoBehaviour
     }
 
     public VizEnvironmentSO Target;
+    public ParticleSystem CloudSystemPrefab;
     public NodeEntry[] Entries;
 
     public bool EnableBlending = false;
@@ -39,6 +41,7 @@ public class EnvironmentVisualController : MonoBehaviour
 
     private Camera _camera;
     private State _state;
+    private ParticleSystem _clouds;
 
     // ------------------------------------------------------------------
     private void Awake()
@@ -65,6 +68,17 @@ public class EnvironmentVisualController : MonoBehaviour
 
                 entry.ParticleInstance = particles;
             }
+        }
+
+        if(CloudSystemPrefab)
+        {
+            var clouds = GameObject.Instantiate(CloudSystemPrefab, _camera.transform);
+            clouds.transform.localPosition = Vector3.zero;
+            clouds.transform.localRotation = Quaternion.identity;
+            clouds.transform.localScale = Vector3.one;
+
+            _clouds = clouds;
+            _clouds.Play(true);
         }
 
         _state.SkyColor = _camera ? _camera.backgroundColor : Color.black;

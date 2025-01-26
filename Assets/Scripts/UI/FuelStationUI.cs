@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FuelStationUI : MonoBehaviour
@@ -30,6 +31,7 @@ public class FuelStationUI : MonoBehaviour
         GameManager.Instance.Logistics.OnFuelChanged += OnFuelChanged;
         
         Hide();
+        
     }
 
     private void OnFuelChanged(float newFuelAmount)
@@ -63,5 +65,16 @@ public class FuelStationUI : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.interactable = false;
+    }
+
+    public void ButtonOnPointerEnterCallback(BaseEventData eventData)
+    {
+        // Debug.Log("Pointer Enter");
+    }
+
+    public void ButtonOnClick()
+    {
+        // Debug.Log("Button Clicked");
+
     }
 }

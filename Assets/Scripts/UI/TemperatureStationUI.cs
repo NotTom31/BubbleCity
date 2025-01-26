@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TemperatureStationUI : MonoBehaviour
@@ -111,5 +112,16 @@ public class TemperatureStationUI : MonoBehaviour
         {
             movingNeedle = false;
         }
+    }
+    
+    public void ButtonOnPointerEnterCallback(BaseEventData eventData)
+    {
+        // Debug.Log("Pointer Enter");
+    }
+
+    public void ButtonOnClick()
+    {
+        // Debug.Log("Button Clicked");
+
     }
 }
