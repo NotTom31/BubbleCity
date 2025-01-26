@@ -11,7 +11,9 @@ public class NavigationStationUI : MonoBehaviour
     public Button toggleDirectionButton;
     public Button openMapButton;
     public CanvasGroup canvasGroup;
-
+    public MapNodeChoiceUI leftMapNodeChoiceUI;
+    public MapNodeChoiceUI rightMapNodeChoiceUI;
+    
     void Start()
     {
         toggleDirectionButton.onClick.AddListener(() =>
@@ -27,7 +29,8 @@ public class NavigationStationUI : MonoBehaviour
         Hide();
         
         GameManager.Instance.Logistics.OnNavigationDirectionChanged += OnNavigationDirectionChanged;
-        OnNavigationDirectionChanged(GameManager.Instance.Logistics.CurrentNavigationDirectionString);
+        OnNavigationDirectionChanged(GameManager.Instance.Logistics.CurrentNavigationDirection);
+        
     }
 
     private void OnDestroy()
@@ -35,9 +38,26 @@ public class NavigationStationUI : MonoBehaviour
         GameManager.Instance.Logistics.OnNavigationDirectionChanged -= OnNavigationDirectionChanged;
     }
 
-    private void OnNavigationDirectionChanged(string newNavigationDirection)
+    private void OnNavigationDirectionChanged(NavigationDirection newNavigationDirection)
     {
-        directionText.text = newNavigationDirection;
+        directionText.text = GameManager.Instance.Logistics.CurrentNavigationDirectionString;
+
+        switch (newNavigationDirection)
+        {
+            case NavigationDirection.None:
+                break;
+            case NavigationDirection.Left:
+                leftMapNodeChoiceUI.SetHighlighted(true);
+                rightMapNodeChoiceUI.SetHighlighted(false);
+                break;
+            case NavigationDirection.Right:
+                leftMapNodeChoiceUI.SetHighlighted(false);
+                rightMapNodeChoiceUI.SetHighlighted(true);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newNavigationDirection), newNavigationDirection, null);
+        }
+        
     }
     
     public void Show()
@@ -52,5 +72,14 @@ public class NavigationStationUI : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.interactable = false;
+    }
+    
+    public void SetUpcomingNodes(MapNode leftNode, MapNode rightNode)
+    {
+        string positives = "Fuel Consumption--";
+        string negatives = "Player Speed --\nShip Speed -- \n";
+        string descriptionText = $"<<color=#9F5255>{negatives}<color=#AAB99A>{positives}";
+        // leftMapNodeChoiceUI.SetNodeText(leftNode.nodeType, leftNode.nodeDescription);
+        // rightMapNodeChoiceUI.SetNodeText(rightNode.nodeType, rightNode.nodeDescription);
     }
 }
