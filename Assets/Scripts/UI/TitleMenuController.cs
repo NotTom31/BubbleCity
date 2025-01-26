@@ -1,0 +1,44 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TitleMenuController : MonoBehaviour
+{
+    public Button StartButton;
+    public Button CreditsButton;
+    public Button QuitButton;
+
+    private void Start()
+    {
+        StartButton.onClick.AddListener(StartGame);
+        CreditsButton.onClick.AddListener(ShowCredits);
+        QuitButton.onClick.AddListener(QuitGame);
+    }
+
+    private void StartGame()
+    {
+        Debug.Log("Start Game");
+    }
+    
+    private void ShowCredits()
+    {
+        Debug.Log("Show Credits");
+    }
+    
+    private void QuitGame()
+    {
+        #if UNITY_EDITOR
+        
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        #endif
+        {
+            Application.Quit();
+        }
+    }
+}

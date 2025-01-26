@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState gameState { get; private set; } = GameState.MAIN_MENU;
+    public StationType station = StationType.None;
     public ShipLogistics Logistics = new ShipLogistics();
     
     public enum StationType
@@ -21,17 +23,10 @@ public class GameManager : MonoBehaviour
         None, Fuel, Navigation, Temperature    
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // UI Elements
+    public TemperatureStationUI temperatureStationUI;
+    public FuelStationUI fuelStationUI;
+    public NavigationStationUI navigationStationUI;
 
     private void Awake()
     {
@@ -46,4 +41,80 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
     }
+    
+        
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Logistics.ConsumeFuel(Time.deltaTime);
+    }
+
+    public void OpenNodeMap()
+    {
+        Debug.Log("Opening Node Map");
+    }
+
+    public void SetStation(StationType type)
+    {
+        Debug.Log(type);
+        switch (type)
+        {
+
+            case StationType.Fuel:
+                fuelStationUI.Show();
+                break;
+            case StationType.Navigation:
+                navigationStationUI.Show();
+                break;
+            case StationType.Temperature:
+                temperatureStationUI.Show();
+                break;
+            
+            case StationType.None:
+                fuelStationUI.Hide();
+                navigationStationUI.Hide();
+                temperatureStationUI.Hide();
+                break;
+            default:
+                break;
+        }
+    }
 }
+
+#region Enums
+
+public enum StationType
+{
+    None, Fuel, Navigation, Temperature    
+}
+
+public enum ShipMovementSpeedSetting
+{
+    None,
+    Slow = 5,
+    Medium = 10,
+    Fast = 15
+}
+    
+public enum NavigationDirection
+{
+    None, Left, Right
+}
+    
+public enum Temperature
+{
+    None,
+    TooCold,
+    Cold,
+    Nominal,
+    Hot,
+    TooHot
+}
+
+#endregion // Enums

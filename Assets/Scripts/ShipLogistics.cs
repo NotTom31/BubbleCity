@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,36 +9,56 @@ public class ShipLogistics
 {
     [field: SerializeField] public float ShipMovementSpeed = 10.0f; // Movement speed of the engineer
     [field: SerializeField] public float MaxFuel = 1.0f; // Max fuel of the ship
+    
+    private Temperature _currentTemperature = Temperature.Nominal;
+    public Temperature CurrentTemperature {
+        get => _currentTemperature;
+        set
+        {
+            _currentTemperature = value;
+            OnTemperatureChanged?.Invoke(CurrentTemperatureString);
+        } 
+    }
+    private NavigationDirection _currentNavigationDirection = NavigationDirection.Left;
+    public NavigationDirection CurrentNavigationDirection 
+    {
+        get => _currentNavigationDirection;
+        set
+        {
+            _currentNavigationDirection = value;
+            OnNavigationDirectionChanged?.Invoke(CurrentNavigationDirectionString);
+        }
+    }
+    private ShipMovementSpeedSetting _shipMovementSpeedSetting = ShipMovementSpeedSetting.Medium;
+    public ShipMovementSpeedSetting CurrentShipMovementSpeedSetting 
+    {
+        get => _shipMovementSpeedSetting;
+        set
+        {
+            _shipMovementSpeedSetting = value;
+            OnShipMovementSpeedChanged?.Invoke(CurrentShipMovementSpeedSettingString);
+        }
+    }
+    
+    
+    private float _currentShipFuel = 1.0f;
 
-    public enum ShipMovementSpeedSetting
+    public float CurrentShipFuel
     {
-        None,
-        Slow = 5,
-        Medium = 10,
-        Fast = 15
+        get => _currentShipFuel;
+        set
+        {
+            _currentShipFuel = value;
+            _currentShipFuel = Mathf.Clamp01(_currentShipFuel);
+            OnFuelChanged?.Invoke(_currentShipFuel);
+        }
     }
-    
-    public enum NavigationDirection
-    {
-        None, Left, Right
-    }
-    
-    public enum Temperature
-    {
-        None,
-        TooCold,
-        Cold,
-        Nominal,
-        Hot,
-        TooHot
-    }
-    
-    public Temperature CurrentTemperature { get; set; } = Temperature.Nominal;
-    public NavigationDirection CurrentNavigationDirection { get; set; } = NavigationDirection.Left;
-    public ShipMovementSpeedSetting CurrentShipMovementSpeedSetting { get; set; } = ShipMovementSpeedSetting.Medium;
-    public float CurrentShipFuel = 1.0f;
     public float CurrentShipSpeed = 1.0f;
 
+    public Action<string> OnTemperatureChanged;
+    public Action<string> OnNavigationDirectionChanged;
+    public Action<string> OnShipMovementSpeedChanged;
+    public Action<float> OnFuelChanged;
     // UI Strings
     public string CurrentTemperatureString
     {
@@ -66,24 +87,75 @@ public class ShipLogistics
             };
         }
     }
-    public string ShipMovementSpeedSettingString
+    public string CurrentShipMovementSpeedSettingString
     {
         get
         {
-            return (int)ShipMovementSpeed switch
+            return _shipMovementSpeedSetting switch
             {
-                (int)ShipMovementSpeedSetting.Slow => "Ahead Slow",
-                (int)ShipMovementSpeedSetting.Medium => "Ahead Standard",
-                (int)ShipMovementSpeedSetting.Fast => "Ahead Flank",
+                ShipMovementSpeedSetting.Slow => "Ahead Slow",
+                ShipMovementSpeedSetting.Medium => "Ahead Standard",
+                ShipMovementSpeedSetting.Fast => "Ahead Flank",
                 _ => "None"
             };
         }
     }
     
     // Event Handlers for when the character reaches a station
-    void HandleOnReachedStation()
+    void HandleOnReachedStation(StationType stationType)
     {
-        
+
+    }
+
+#region UI Callbacks
+
+    public void ToggleNavigationDirection()
+    {
+        CurrentNavigationDirection = _currentNavigationDirection == NavigationDirection.Left ? 
+            NavigationDirection.Right : NavigationDirection.Left;
+    }
+
+    public void IncreaseShipMovementSpeed()
+    {
+        switch (_shipMovementSpeedSetting)
+        {
+            case ShipMovementSpeedSetting.Slow:
+                CurrentShipMovementSpeedSetting = ShipMovementSpeedSetting.Medium;
+                break;
+            case ShipMovementSpeedSetting.Medium:
+                CurrentShipMovementSpeedSetting = ShipMovementSpeedSetting.Fast;
+                break;
+            case ShipMovementSpeedSetting.Fast:
+                
+                break;
+        }
+    }
+
+    public void DecreaseShipMovementSpeed()
+    {
+        switch (_shipMovementSpeedSetting)
+        {
+            case ShipMovementSpeedSetting.Slow:
+                break;
+            case ShipMovementSpeedSetting.Medium:
+                CurrentShipMovementSpeedSetting = ShipMovementSpeedSetting.Slow;
+                break;
+            case ShipMovementSpeedSetting.Fast:
+                CurrentShipMovementSpeedSetting = ShipMovementSpeedSetting.Medium;
+
+                break;
+                
+        }
     }
     
+    #endregion // UI Callbacks
+
+    public void ConsumeFuel(float deltaTime)
+    {
+        CurrentShipFuel -= deltaTime / 100.0f;
+        if (CurrentShipFuel <= 0)
+        {
+            CurrentShipFuel = 0;
+        }
+    }
 }

@@ -8,6 +8,8 @@ public class PlayerNavigation : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.SetStation(GameManager.StationType.None);
+
         if (navMeshAgent == null)
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -35,6 +37,37 @@ public class PlayerNavigation : MonoBehaviour
         else
         {
             Debug.Log("Clicked point is not on the NavMesh.");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Fuel":
+                GameManager.Instance.SetStation(GameManager.StationType.Fuel);
+                break;
+            case "Navigation":
+                GameManager.Instance.SetStation(GameManager.StationType.Navigation);
+                break;
+            case "Temperature":
+                GameManager.Instance.SetStation(GameManager.StationType.Temperature);
+                break;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Fuel":
+                GameManager.Instance.SetStation(GameManager.StationType.None);
+                break;
+            case "Navigation":
+                GameManager.Instance.SetStation(GameManager.StationType.None);
+                break;
+            case "Temperature":
+                GameManager.Instance.SetStation(GameManager.StationType.None);
+                break;
         }
     }
 }
