@@ -27,7 +27,7 @@ public class PlayerNavigation : MonoBehaviour
 
         inputScript.PointSelected += MoveToPoint;
 
-        //SetWind(Vector3.right, 4f);
+        //SetWind(Vector3.left, 4f);
     }
 
     private void OnDestroy()
@@ -43,7 +43,7 @@ public class PlayerNavigation : MonoBehaviour
 
     private void ApplyWindForce()
     {
-        if (windForce != Vector3.zero)
+        if (windForce != Vector3.zero && GameManager.Instance.station == GameManager.StationType.None)
         {
             Vector3 windVelocity = windForce.normalized * windStrength * Time.deltaTime;
             navMeshAgent.Move(windVelocity);

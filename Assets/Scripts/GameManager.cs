@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
     public void SetStation(StationType type)
     {
         Debug.Log(type);
+        station = type;
         switch (type)
         {
 
