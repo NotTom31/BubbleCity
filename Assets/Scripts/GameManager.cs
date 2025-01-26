@@ -27,10 +27,19 @@ public class GameManager : MonoBehaviour
     }
     
     // UI Elements
+    [Header("UI Elements")]
     public TemperatureStationUI temperatureStationUI;
     public FuelStationUI fuelStationUI;
     public NavigationStationUI navigationStationUI;
 
+    [Header("Environment VFX")] 
+    public EnvironmentVisualController environmentVisualController;
+    public VizEnvironmentSO calmEnvironment;
+    public VizEnvironmentSO coldEnvironment;
+    public VizEnvironmentSO warmEnvironment;
+    public VizEnvironmentSO windyEnvironment;
+    public VizEnvironmentSO asteroidEnvironment;
+    
     private void Awake()
     {
         // Singleton pattern
