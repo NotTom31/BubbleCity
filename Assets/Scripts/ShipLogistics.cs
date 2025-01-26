@@ -13,7 +13,8 @@ public class ShipLogistics
     public float FuelConsumptionRate => BaseFuelConsumptionRate * (int)CurrentShipMovementSpeedSetting *
                                         GameManager.Instance.nodeHazards.GetActiveNodeStats().fuelConsumptionMult;
     private Temperature _currentTemperature = Temperature.Nominal;
-    public Temperature CurrentTemperature {
+    public Temperature CurrentTemperature 
+    {
         get => _currentTemperature;
         set
         {
