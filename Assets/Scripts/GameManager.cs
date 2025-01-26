@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameState gameState { get; private set; } = GameState.MAIN_MENU;
     public StationType station = StationType.None;
     public ShipLogistics Logistics = new ShipLogistics();
+    public NodeHazards nodeHazards;
     
     public enum StationType
     {
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        nodeHazards = new NodeHazards();
+        nodeHazards.Initialize();
     }
 
     // Update is called once per frame
@@ -96,10 +98,10 @@ public enum StationType
 
 public enum ShipMovementSpeedSetting
 {
-    None,
-    Slow = 5,
-    Medium = 10,
-    Fast = 15
+    None = 1,
+    Slow = 2,
+    Medium = 3,
+    Fast = 4
 }
     
 public enum NavigationDirection

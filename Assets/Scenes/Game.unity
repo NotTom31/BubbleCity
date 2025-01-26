@@ -916,6 +916,10 @@ PrefabInstance:
       propertyPath: temperatureStationUI
       value: 
       objectReference: {fileID: 948083419}
+    - target: {fileID: 1109936185151697356, guid: 3f6b94af0bf3e304eace9e00df93d100, type: 3}
+      propertyPath: Logistics.BaseFuelConsumptionRate
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6b94af0bf3e304eace9e00df93d100, type: 3}
 --- !u!1 &1493102399

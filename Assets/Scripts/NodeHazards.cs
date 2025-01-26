@@ -11,7 +11,7 @@ public enum NodeTypePlaceholder
     DEFAULT
 }
 
-public class NodeHazards : MonoBehaviour
+public class NodeHazards
 {
     public struct NodeStats
     {
@@ -61,7 +61,7 @@ public class NodeHazards : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Initialize()
     {
         coldStats = new NodeStats
         {
