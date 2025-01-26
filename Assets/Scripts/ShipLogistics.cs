@@ -29,7 +29,7 @@ public class ShipLogistics
         set
         {
             _currentNavigationDirection = value;
-            OnNavigationDirectionChanged?.Invoke(CurrentNavigationDirectionString);
+            OnNavigationDirectionChanged?.Invoke(_currentNavigationDirection);
         }
     }
     private ShipMovementSpeedSetting _shipMovementSpeedSetting = ShipMovementSpeedSetting.Medium;
@@ -39,7 +39,7 @@ public class ShipLogistics
         set
         {
             _shipMovementSpeedSetting = value;
-            OnShipMovementSpeedChanged?.Invoke(CurrentShipMovementSpeedSettingString);
+            OnShipMovementSpeedSettingChanged?.Invoke(CurrentShipMovementSpeedSettingString);
         }
     }
     
@@ -59,8 +59,8 @@ public class ShipLogistics
     public float CurrentShipSpeed = 1.0f;
 
     public Action<string, Temperature> OnTemperatureChanged;
-    public Action<string> OnNavigationDirectionChanged;
-    public Action<string> OnShipMovementSpeedChanged;
+    public Action<NavigationDirection> OnNavigationDirectionChanged;
+    public Action<string> OnShipMovementSpeedSettingChanged;
     public Action<float> OnFuelChanged;
     // UI Strings
     public string CurrentTemperatureString
@@ -165,4 +165,48 @@ public class ShipLogistics
         return hasFuel;
     }
 
+    private bool temperatureInNeedOfRegulation = false;
+    public int temperatureRegulationCounter = 0;
+    public int temperatureRegulationTargetClicks = 10;
+
+    public void ToggleTemperatureRegulation()
+    {
+        if (!temperatureInNeedOfRegulation) return;
+        
+        temperatureRegulationCounter--;
+        if (temperatureRegulationCounter <= 0)
+        {
+            temperatureInNeedOfRegulation = false;
+            temperatureRegulationCounter = 0;
+
+            if (CurrentTemperature == Temperature.TooCold &&  GameManager.Instance.nodeHazards.GetActiveNodeStats().isCold)
+                CurrentTemperature = Temperature.Cold;
+            else if (CurrentTemperature == Temperature.TooHot && GameManager.Instance.nodeHazards.GetActiveNodeStats().isHot)
+                CurrentTemperature = Temperature.Hot;
+            else
+            {
+                CurrentTemperature = Temperature.Nominal;
+            }
+        }
+    }
+
+    public void SetTemperatureInNeedOfRegulation(bool isCold, bool isHot)
+    {
+        if ((isCold || isHot) )
+        {
+            temperatureInNeedOfRegulation = true;
+            temperatureRegulationCounter = temperatureRegulationTargetClicks;
+            if (isCold) CurrentTemperature = Temperature.TooCold;
+            else if (isHot) CurrentTemperature = Temperature.TooHot;
+        }
+        
+        if (!isCold && !isHot)
+        {
+            temperatureInNeedOfRegulation = false;
+            temperatureRegulationCounter = 0;
+            CurrentTemperature = Temperature.Nominal;
+        }
+        
+
+    }
 }
