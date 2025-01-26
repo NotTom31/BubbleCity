@@ -94,6 +94,10 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+
+        nodeHazards.SetNodeType(node.GetNodeType());
+        var childNodes = node.GetChildNodes();
+        navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
     }
 
     // Update is called once per frame

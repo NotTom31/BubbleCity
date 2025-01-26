@@ -80,7 +80,8 @@ public class NavigationStationUI : MonoBehaviour
         string positives = "Fuel Consumption--";
         string negatives = "Player Speed --\nShip Speed -- \n";
         string descriptionText = $"<<color=#9F5255>{negatives}<color=#AAB99A>{positives}";
-        // leftMapNodeChoiceUI.SetNodeText(leftNode.nodeType, leftNode.nodeDescription);
-        // rightMapNodeChoiceUI.SetNodeText(rightNode.nodeType, rightNode.nodeDescription);
+        
+        leftMapNodeChoiceUI.SetNodeText($"{leftNode.GetNodeType().ToString()} Storm", "Stuff");
+        rightMapNodeChoiceUI.SetNodeText($"{rightNode.GetNodeType()} Storm", "Right Stuff");
     }
 }

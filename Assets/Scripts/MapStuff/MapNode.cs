@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapNode
 {
-    NodeType type;
+    public NodeType type;
     MapNode parent;
     List<MapNode> children = new List<MapNode>();
     public MapNodeIcon icon;
