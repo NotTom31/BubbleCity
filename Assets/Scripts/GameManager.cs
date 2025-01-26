@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
         nodeHazards.SetNodeType(node.GetNodeType());
         var childNodes = node.GetChildNodes();
         navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
+
+        AudioManager.Instance.SetActiveNodeType(node.GetNodeType());
     }
 
     // Update is called once per frame
