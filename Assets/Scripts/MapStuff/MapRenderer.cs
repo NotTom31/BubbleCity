@@ -65,6 +65,7 @@ public class MapRenderer : MonoBehaviour
     //updates position of the pointer showing where the player is
     public void UpdatePointer(float segment_progress)
     {
+        if (!pointer) return;
         pointer.localPosition = Vector3.Lerp(nav.GetFromNode().icon.transform.localPosition,
                                         nav.GetToNode().icon.transform.localPosition, segment_progress);
     }
