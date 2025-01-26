@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be7c513b7027c244916954cba33f7a6, type: 3}
   m_Name: AsteroidStorm
   m_EditorClassIdentifier: 
-  SkyColor: {r: 1, g: 0.5430721, b: 0.48742133, a: 1}
-  LightColor: {r: 1, g: 0.6392157, b: 0.40784317, a: 1}
+  SkyColor: {r: 0.1792453, g: 0.11441188, b: 0, a: 1}
+  LightColor: {r: 0.6132076, g: 0.20440252, b: 0, a: 1}
+  AmbientColor: {r: 0.009433985, g: 0, b: 0, a: 1}
+  FogColor: {r: 0.2735849, g: 0.13817419, b: 0, a: 1}
+  FogDistance: 300

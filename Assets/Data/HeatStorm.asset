@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be7c513b7027c244916954cba33f7a6, type: 3}
   m_Name: HeatStorm
   m_EditorClassIdentifier: 
-  SkyColor: {r: 0.8867924, g: 0.42918044, b: 0.055773012, a: 1}
-  LightColor: {r: 0.6226415, g: 0.14519422, b: 0, a: 1}
+  SkyColor: {r: 0.955, g: 0.43219224, b: 0, a: 1}
+  LightColor: {r: 1, g: 0.90170914, b: 0.85534585, a: 1}
+  AmbientColor: {r: 0.5283019, g: 0.08467431, b: 0, a: 1}
+  FogColor: {r: 1, g: 0.5833334, b: 0, a: 1}
+  FogDistance: 122.6
