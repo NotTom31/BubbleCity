@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleMenuController : MonoBehaviour
@@ -20,6 +21,7 @@ public class TitleMenuController : MonoBehaviour
     private void StartGame()
     {
         Debug.Log("Start Game");
+        SceneManager.LoadScene("Game");
     }
     
     private void ShowCredits()
@@ -30,7 +32,6 @@ public class TitleMenuController : MonoBehaviour
     private void QuitGame()
     {
         #if UNITY_EDITOR
-        
         if (Application.isEditor)
         {
             UnityEditor.EditorApplication.isPlaying = false;

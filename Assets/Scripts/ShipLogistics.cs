@@ -8,8 +8,10 @@ using UnityEngine;
 public class ShipLogistics
 {
     [field: SerializeField] public float ShipMovementSpeed = 10.0f; // Movement speed of the engineer
-    [field: SerializeField] public float MaxFuel = 1.0f; // Max fuel of the ship
-    
+    public float BaseFuelConsumptionRate = 1.0f; // Fuel consumption rate of the ship
+
+    public float FuelConsumptionRate => BaseFuelConsumptionRate * (int)CurrentShipMovementSpeedSetting *
+                                        GameManager.Instance.nodeHazards.GetActiveNodeStats().fuelConsumptionMult;
     private Temperature _currentTemperature = Temperature.Nominal;
     public Temperature CurrentTemperature {
         get => _currentTemperature;
@@ -104,7 +106,7 @@ public class ShipLogistics
     // Event Handlers for when the character reaches a station
     void HandleOnReachedStation(StationType stationType)
     {
-
+        
     }
 
 #region UI Callbacks
@@ -142,7 +144,6 @@ public class ShipLogistics
                 break;
             case ShipMovementSpeedSetting.Fast:
                 CurrentShipMovementSpeedSetting = ShipMovementSpeedSetting.Medium;
-
                 break;
                 
         }
@@ -152,10 +153,11 @@ public class ShipLogistics
 
     public void ConsumeFuel(float deltaTime)
     {
-        CurrentShipFuel -= deltaTime / 100.0f;
+        CurrentShipFuel -= (deltaTime / 100.0f) * FuelConsumptionRate;
         if (CurrentShipFuel <= 0)
         {
             CurrentShipFuel = 0;
         }
     }
+
 }
