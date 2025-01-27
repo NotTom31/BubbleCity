@@ -57,5 +57,6 @@ public class Dialogue : MonoBehaviour
         pops.SetActive(false);
         currentLineIndex = 0;
         GameManager.Instance.PauseGame();
+        AudioManager.Instance.PlayGameStart();
     }
 }

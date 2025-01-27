@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
         _activeEnvSource.loop = true;
         _inactiveEnvSource.loop = true;
 
-        _coldClip = (AudioClip) Resources.Load("Audio/Ambient/Wind");
+        _coldClip = (AudioClip) Resources.Load("Audio/Ambient/Cold");
         _heatClip = (AudioClip) Resources.Load("Audio/Ambient/Firestorm");
         _windClip = (AudioClip) Resources.Load("Audio/Ambient/Wind");
         _thunderClip = (AudioClip) Resources.Load("Audio/Ambient/Meteors");

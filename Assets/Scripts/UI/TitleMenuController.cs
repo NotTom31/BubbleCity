@@ -23,6 +23,7 @@ public class TitleMenuController : MonoBehaviour
     {
         Debug.Log("Start Game");
         SceneManager.LoadScene("Game");
+        // AudioManager.Instance?.PlayGameStart();
     }
     
     private void ShowCredits()

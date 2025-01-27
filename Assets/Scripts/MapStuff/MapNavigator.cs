@@ -14,7 +14,7 @@ public class MapNavigator : MonoBehaviour
     MapNode toNode; //Node the ship is heading toward
     float segmentProgress = 0;
     bool moving = true;
-    static readonly float SPEED_COEFFICIENT = 0.003f;
+    public float SPEED_COEFFICIENT = 0.003f;
 
     public event Action<MapNode> OnReachNode;
     public void ReachNodeEvent(MapNode nodeReached)
