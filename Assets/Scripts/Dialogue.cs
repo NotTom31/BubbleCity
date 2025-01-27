@@ -6,6 +6,7 @@ public class Dialogue : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject dialoguePanel;
+    public GameObject pops;
     public TextMeshProUGUI dialogueText;
     public Button nextButton;
 
@@ -31,6 +32,7 @@ public class Dialogue : MonoBehaviour
     private void ShowDialogue()
     {
         dialoguePanel.SetActive(true);
+        pops.SetActive(true);
         dialogueText.text = dialogueLines[currentLineIndex];
     }
 
@@ -52,6 +54,7 @@ public class Dialogue : MonoBehaviour
     {
         GameManager.Instance.isInDialogue = false;
         dialoguePanel.SetActive(false);
+        pops.SetActive(false);
         currentLineIndex = 0;
         GameManager.Instance.PauseGame();
     }
