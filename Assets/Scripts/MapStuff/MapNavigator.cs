@@ -57,7 +57,7 @@ public class MapNavigator : MonoBehaviour
             mRenderer.UpdatePointer(segmentProgress);
     }
 
-    //creates a map node graph with exclusively binary branching and arbitrary node types
+    //creates a map node graph with exclusively binary branching and random node types
     private MapNode GenerateBinaryTree(int depth)
     {
         if (depth == 0)
