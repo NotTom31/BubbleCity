@@ -43,6 +43,7 @@ public class PlayerNavigation : MonoBehaviour
 
     private void ApplyWindForce()
     {
+        if (!navMeshAgent.enabled) return;
         if (windForce != Vector3.zero && GameManager.Instance.station == GameManager.StationType.None)
         {
             Vector3 windVelocity = windForce.normalized * windStrength * Time.deltaTime;
@@ -52,6 +53,8 @@ public class PlayerNavigation : MonoBehaviour
 
     private void MoveToPoint(Vector3 point)
     {
+        if (!navMeshAgent.enabled) return;
+
         if (NavMesh.SamplePosition(point, out NavMeshHit navMeshHit, 1.0f, NavMesh.AllAreas))
         {
             navMeshAgent.SetDestination(navMeshHit.position);

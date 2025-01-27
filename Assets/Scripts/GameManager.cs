@@ -156,7 +156,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOverCoroutine()
     {
-        
         foreach (var go in dropObjects)
         {
             var rb = go.GetComponent<Rigidbody>();
@@ -181,7 +180,7 @@ public class GameManager : MonoBehaviour
                 rb.isKinematic = false;
                 rb.useGravity = true;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(UnityEngine.Random.Range(0.05f, 0.1f));
             }
         }
         

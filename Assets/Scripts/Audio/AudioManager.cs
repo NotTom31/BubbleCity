@@ -117,7 +117,7 @@ public class AudioManager : MonoBehaviour
     public void PlayFootstep()
     {
         int idx = Random.Range(0, _footsteps.Length);
-        Debug.Log(idx);
+        // Debug.Log(idx);
         PlayEvent(_footsteps[idx]);
     }
 
