@@ -123,7 +123,7 @@ public class NodeHazards
 
         heatStats = new NodeStats
         {
-            shipSpeedMult = 1.2f,
+            shipSpeedMult = 1.1f,
             playerSpeedMult = 0.9f,
             refuelAmount = 50f,
             rockAmount = 0f,
@@ -149,7 +149,7 @@ public class NodeHazards
 
         windStats = new NodeStats
         {
-            shipSpeedMult = 1.4f,
+            shipSpeedMult = 1.2f,
             playerSpeedMult = 1f,
             refuelAmount = 0f,
             rockAmount = 0f,
