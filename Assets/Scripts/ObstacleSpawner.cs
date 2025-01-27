@@ -3,6 +3,7 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject obstaclePrefab;
+    [SerializeField] private GameObject asteroidPrefab;
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval = 2f;
@@ -22,8 +23,6 @@ public class ObstacleSpawner : MonoBehaviour
             SpawnObstacle();
             spawnTimer = 0f;
         }
-
-        
     }
 
     private void Start()
@@ -54,6 +53,16 @@ public class ObstacleSpawner : MonoBehaviour
             //spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
 
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        }
+        else if(spawnPoints.Length > 0 && currentSpawnIndex == 4 && currentSpawnIndex < spawnPoints.Length)
+        {
+            Debug.Log("asteroid");
+            Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
+
+            spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
+            spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
+
+            Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
         }
         else
         {

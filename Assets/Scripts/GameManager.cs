@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -57,10 +58,9 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(Instance);
+            // DontDestroyOnLoad(Instance);
         }
     }
-    
         
     // Start is called before the first frame update
     void Start()
@@ -97,8 +97,9 @@ public class GameManager : MonoBehaviour
                 playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Asteroid:
-                obstacleSpawner.DisableSpawner();
+                obstacleSpawner.EnableSpawner();
                 playerNavigation.SetWind(Vector3.zero, 0f);
+                obstacleSpawner.SetSpawnPoint(4);
                 break;
             case MapNode.NodeType.Wind:
                 obstacleSpawner.EnableSpawner();
@@ -147,32 +148,44 @@ public class GameManager : MonoBehaviour
         if (!Logistics.ConsumeFuel(Time.deltaTime))
         {
             GameOver = true;
-            foreach (var go in dropObjects)
+            StartCoroutine(nameof(GameOverCoroutine));
+        }
+    }
+
+    IEnumerator GameOverCoroutine()
+    {
+        
+        foreach (var go in dropObjects)
+        {
+            var rb = go.GetComponent<Rigidbody>();
+            if (!rb) rb = go.AddComponent<Rigidbody>();
+            if (rb)
             {
-                var rb = go.GetComponent<Rigidbody>();
-                if (!rb) rb = go.AddComponent<Rigidbody>();
-                if (rb)
+                var xfm = go.GetComponent<Transform>();
+                if (xfm) xfm.SetParent(null);
+
+                var meshColliders = go.GetComponentsInChildren<MeshCollider>();
+                if (meshColliders != null && meshColliders.Length > 0)
                 {
-                    var xfm = go.GetComponent<Transform>();
-                    if (xfm) xfm.SetParent(null);
-
-                    var meshColliders = go.GetComponentsInChildren<MeshCollider>();
-                    if (meshColliders != null && meshColliders.Length > 0)
+                    foreach (var mc in meshColliders)
                     {
-                        foreach (var mc in meshColliders)
-                        {
-                            mc.convex = true;
-                        }
+                        mc.convex = true;
                     }
-
-                    var nma = go.GetComponent<NavMeshAgent>();
-                    if (nma) nma.enabled = false;
-                    
-                    rb.isKinematic = false;
-                    rb.useGravity = true;
                 }
+
+                var nma = go.GetComponent<NavMeshAgent>();
+                if (nma) nma.enabled = false;
+                    
+                rb.isKinematic = false;
+                rb.useGravity = true;
+
+                yield return new WaitForSeconds(0.5f);
             }
         }
+        
+        yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene("Game");
     }
 
     public void OpenNodeMap()
