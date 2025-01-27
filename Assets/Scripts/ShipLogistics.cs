@@ -7,7 +7,8 @@ using UnityEngine;
 [System.Serializable]
 public class ShipLogistics
 {
-    [field: SerializeField] public float ShipMovementSpeed = 10.0f; // Speed of the ship
+    [SerializeField] private float _baseShipMovementSpeed = 10.0f; // Speed of the ship
+    public float ShipMovementSpeed => _baseShipMovementSpeed * (int)CurrentShipMovementSpeedSetting * GameManager.Instance.nodeHazards.GetActiveNodeStats().shipSpeedMult;
     public float BaseFuelConsumptionRate = 1.0f; // Fuel consumption rate of the ship
 
     public float FuelConsumptionRate => BaseFuelConsumptionRate * (int)CurrentShipMovementSpeedSetting *

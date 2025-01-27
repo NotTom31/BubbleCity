@@ -172,5 +172,18 @@ public class NodeHazards
             windSpeed = 0f,
             windDirection = Vector3.zero
         };
+        
+        thunderStats = new NodeStats
+        {
+            shipSpeedMult = 1f,
+            playerSpeedMult = 1f,
+            refuelAmount = 0f,
+            rockAmount = 0f,
+            fuelConsumptionMult = 1.0f,
+            isCold = false,
+            isHot = false,
+            windSpeed = 0f,
+            windDirection = Vector3.zero
+        };
     }
 }

@@ -428,6 +428,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1879254333}
     - target: {fileID: 1109936185151697356, guid: 3f6b94af0bf3e304eace9e00df93d100, type: 3}
+      propertyPath: Logistics._baseShipMovementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109936185151697356, guid: 3f6b94af0bf3e304eace9e00df93d100, type: 3}
       propertyPath: Logistics.BaseFuelConsumptionRate
       value: 0.5
       objectReference: {fileID: 0}
