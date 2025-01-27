@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private PlayerNavigation playerNavigation;
     private bool GameOver = false;
     public PauseMenuController pauseMenuController;
+    public bool isInDialogue = false;
     
     public enum StationType
     {
@@ -235,6 +236,8 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public void PauseGame()
     {
+        if (isInDialogue)
+            return;
         isPaused = !isPaused;
         pauseMenuController.gameObject.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
