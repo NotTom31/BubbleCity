@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     private AudioClip _windClip;
     private AudioClip _thunderClip;
     private AudioClip _asteroidClip;
+    private AudioClip _bubblesClip;
 
     // BGM ------------------------------------------------
     private AudioSource _smallBGMSource;
@@ -81,7 +82,6 @@ public class AudioManager : MonoBehaviour
 
         _activeEnvSource = sources[3];
         _inactiveEnvSource = sources[4];
-        _auxWindSource = sources[5];
 
         _activeEnvSource.loop = true;
         _inactiveEnvSource.loop = true;
@@ -92,7 +92,10 @@ public class AudioManager : MonoBehaviour
         _thunderClip = (AudioClip) Resources.Load("Audio/Ambient/Meteors");
         _asteroidClip = (AudioClip) Resources.Load("Audio/Ambient/Meteors");
 
-        Debug.Log("flkjasdfkjl");
+        _uiSource = sources[5];
+        _uiHoverClip = (AudioClip) Resources.Load("Audio/UI/UIHover");
+        _uiSelectClip = (AudioClip) Resources.Load("Audio/UI/UISelect");
+
         PlaySmallBGM();
     }
 
