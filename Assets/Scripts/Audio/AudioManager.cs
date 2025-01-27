@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource[] sources = GetComponents<AudioSource>();
 
-        _footsteps = Resources.LoadAll("Audio/Actions/Footsteps", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+        _footsteps = Resources.LoadAll("Audio/Action/Footsteps", typeof(AudioClip)).Cast<AudioClip>().ToArray();
         // _popClip = (AudioClip) Resources.Load("Audio/Actions/Pop");
         _eventSource = sources[0];
 
@@ -91,12 +91,14 @@ public class AudioManager : MonoBehaviour
         _windClip = (AudioClip) Resources.Load("Audio/Ambient/Wind");
         _thunderClip = (AudioClip) Resources.Load("Audio/Ambient/Meteors");
         _asteroidClip = (AudioClip) Resources.Load("Audio/Ambient/Meteors");
+        _bubblesClip = (AudioClip) Resources.Load("Audio/Action/Movement");
 
         _uiSource = sources[5];
         _uiHoverClip = (AudioClip) Resources.Load("Audio/UI/UIHover");
         _uiSelectClip = (AudioClip) Resources.Load("Audio/UI/UISelect");
 
-        PlaySmallBGM();
+        // PlaySmallBGM();
+        PlayEnv(_bubblesClip);
     }
 
     // Update is called once per frame
@@ -114,12 +116,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlayFootstep()
     {
-        PlayEvent(_footsteps[Random.Range(0, _footsteps.Length)]);
+        int idx = Random.Range(0, _footsteps.Length);
+        Debug.Log(idx);
+        PlayEvent(_footsteps[idx]);
     }
 
     public void PlayGameStart()
     {
+        StopEnv();
         PlayEvent(_gameStartClip);
+        PlaySmallBGM();
     }
 
     public void PlayGameOver()
@@ -182,7 +188,7 @@ public class AudioManager : MonoBehaviour
                 PlayEnv(_asteroidClip);
                 break;
             default:
-                StartCoroutine(StartFade(_activeEnvSource, 1.0f, 0.0f, true));
+                StopEnv();
                 break;
         }
     }
@@ -215,6 +221,11 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(StartFade(_activeEnvSource, 1.0f, 0.0f, true));
         StartCoroutine(StartFade(_inactiveEnvSource, 1.0f, 0.7f));
         StartCoroutine(SwitchEnvSourcesWhenDone());
+    }
+
+    public void StopEnv()
+    {
+        StartCoroutine(StartFade(_activeEnvSource, 1.0f, 0.0f, true));
     }
 
     private IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume, bool stop = false)
