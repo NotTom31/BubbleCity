@@ -16,7 +16,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         nextButton.onClick.AddListener(NextDialogue);
-
+        GameManager.Instance.PauseGame();
         if (dialogueLines.Length > 0)
         {
             ShowDialogue();
@@ -51,5 +51,6 @@ public class Dialogue : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLineIndex = 0;
+        GameManager.Instance.PauseGame();
     }
 }
