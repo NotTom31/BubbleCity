@@ -160,7 +160,9 @@ public class ShipLogistics
         var refuelAmount = GameManager.Instance.nodeHazards.GetActiveNodeStats().refuelAmount;
         if (refuelAmount > 0)
         {
-            CurrentShipFuel += refuelAmount * Time.deltaTime;
+            var totalRefuelAmount =  refuelAmount / 100.0f * Time.deltaTime;
+            Debug.Log("Refueling by " + totalRefuelAmount);
+            CurrentShipFuel += totalRefuelAmount;
         }
         
         // Consume it

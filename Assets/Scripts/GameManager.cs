@@ -62,13 +62,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
             // DontDestroyOnLoad(Instance);
         }
+        nodeHazards = new NodeHazards();
+        nodeHazards.Initialize();
     }
         
     // Start is called before the first frame update
     void Start()
     {
-        nodeHazards = new NodeHazards();
-        nodeHazards.Initialize();
         if (playerObject == null)
         {
             playerObject = GameObject.FindWithTag("Player");

@@ -125,7 +125,7 @@ public class NodeHazards
         {
             shipSpeedMult = 1.1f,
             playerSpeedMult = 0.9f,
-            refuelAmount = 50f,
+            refuelAmount = 1f,
             rockAmount = 0f,
             fuelConsumptionMult = 0.8f,
             isCold = false,
@@ -138,7 +138,7 @@ public class NodeHazards
         {
             shipSpeedMult = 1f,
             playerSpeedMult = 0.9f,
-            refuelAmount = 50f,
+            refuelAmount = 2f,
             rockAmount = 10f,
             fuelConsumptionMult = 1.0f,
             isCold = false,
