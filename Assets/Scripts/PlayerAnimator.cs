@@ -23,9 +23,4 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetBool(WALK_HASH, Agent.velocity.magnitude > float.Epsilon);
         Animator.SetBool(WORK_HASH, IsWorking);
     }
-
-    public void PlayFootstep()
-    {
-        AudioManager.Instance.PlayFootstep();
-    }
 }
