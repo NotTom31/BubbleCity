@@ -157,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   station: 0
   Logistics:
-    _baseShipMovementSpeed: 1
-    BaseFuelConsumptionRate: 0.5
+    _baseShipMovementSpeed: 10
+    BaseFuelConsumptionRate: 0.8
     temperatureRegulationCounter: 0
     temperatureRegulationTargetClicks: 10
   playerObject: {fileID: 0}
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mRenderer: {fileID: 297297889442256456}
-  SPEED_COEFFICIENT: 0.0008
+  SPEED_COEFFICIENT: 0.001
 --- !u!1001 &3014804760503440323
 PrefabInstance:
   m_ObjectHideFlags: 0
