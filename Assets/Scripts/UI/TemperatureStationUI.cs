@@ -116,12 +116,11 @@ public class TemperatureStationUI : MonoBehaviour
     
     public void ButtonOnPointerEnterCallback(BaseEventData eventData)
     {
-        // Debug.Log("Pointer Enter");
+        AudioManager.Instance.UIHover();
     }
 
     public void ButtonOnClick()
     {
-        // Debug.Log("Button Clicked");
-
+        AudioManager.Instance.UISelect();
     }
 }
