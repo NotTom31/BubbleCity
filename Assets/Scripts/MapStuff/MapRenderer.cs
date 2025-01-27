@@ -74,7 +74,48 @@ public class MapRenderer : MonoBehaviour
 
     private void ReachNodeRerender(MapNode reached)
     {
-        //TODO: cull half the nodes and re-order everything
+        if (reached == null)
+        {
+            Debug.LogWarning("Reached node is null!");
+            return;
+        }
+
+        if (reached.icon == null)
+        {
+            Debug.LogWarning($"Icon for node {reached} is null!");
+            return;
+        }
+
+        foreach (var childNode in reached.GetChildNodes())
+        {
+            if (childNode.icon != null)
+            {
+                childNode.icon.GetComponent<FadeCuller>()?.FadeAndCull(1f);
+            }
+        }
+
+        ClearAndRenderFromNode(reached);
+
+        RecursiveRender(Screen.width, Screen.width / 2f, startingY + layersize, reached, viewDepth);
+    }
+
+
+    private void ClearAndRenderFromNode(MapNode node)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child != pointer)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        RecursiveRender(Screen.width, Screen.width / 2f, startingY + layersize, nav.GetFromNode(), viewDepth);
+
+        if (pointer != null)
+        {
+            pointer.localPosition = nav.GetFromNode().icon.transform.localPosition;
+        }
     }
 
     public void SetNavigator(MapNavigator navi)

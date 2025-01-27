@@ -89,12 +89,12 @@ public class MapNavigator : MonoBehaviour
         return new MapNode(type);
     }
 
-    private MapNode NewParentNode(NodeType type, List<MapNode> children)
+    public MapNode NewParentNode(NodeType type, List<MapNode> children)
     {
         return new MapNode(type, children);
     }
 
-    private NodeType RandomType(bool includeClear = false)
+    public NodeType RandomType(bool includeClear = false)
     {
         int start = 1;
         if (includeClear)
