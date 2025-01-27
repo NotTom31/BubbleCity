@@ -74,27 +74,36 @@ public class GameManager : MonoBehaviour
         }
 
         mapNavigator.OnReachNode += NodeReached;
+        NodeReached(mapNavigator.GetFromNode());
     }
 
     private void NodeReached(MapNode node)
     {
+        nodeHazards.SetNodeType(node.GetNodeType());
         //Debug.Log("heres where we reach a node in GameManager :)");
         //node.GetNodeType();
         switch (node.GetNodeType())
         {
             case MapNode.NodeType.Clear:
                 obstacleSpawner.DisableSpawner();
+                playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Cold:
+                obstacleSpawner.DisableSpawner();
+                playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Heat:
+                obstacleSpawner.DisableSpawner();
+                playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Asteroid:
+                obstacleSpawner.DisableSpawner();
+                playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Wind:
+                obstacleSpawner.EnableSpawner();
                 playerNavigation.SetWind(nodeHazards.GetActiveNodeStats().windDirection, nodeHazards.GetActiveNodeStats().windSpeed);
                 Debug.Log(nodeHazards.GetActiveNodeStats().windDirection + "" + nodeHazards.GetActiveNodeStats().windSpeed);
-                obstacleSpawner.EnableSpawner();
 
                 if (nodeHazards.GetActiveNodeStats().windDirection == Vector3.left)
                 {
@@ -115,12 +124,19 @@ public class GameManager : MonoBehaviour
 
                 break;
             default:
+                obstacleSpawner.DisableSpawner();
+                playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
         }
 
-        nodeHazards.SetNodeType(node.GetNodeType());
-        var childNodes = node.GetChildNodes();
-        navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
+        var childNodes = mapNavigator.GetToNode().GetChildNodes();
+        if (childNodes.Count > 1)
+        {
+            navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
+        }
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetActiveNodeType(node.GetNodeType());
     }
 
     // Update is called once per frame

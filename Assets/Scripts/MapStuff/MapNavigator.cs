@@ -44,20 +44,25 @@ public class MapNavigator : MonoBehaviour
         segmentProgress += speed * Time.deltaTime * SPEED_COEFFICIENT;
         if (segmentProgress >= 1f)
         {
-            ReachNodeEvent(toNode);
             fromNode = toNode;
+            if (fromNode.GetChildNodes().Count == 0)
+            {
+                moving = false;
+                return;
+            }
             NavigationDirection dir = GameManager.Instance.Logistics.CurrentNavigationDirection;
             if (dir == NavigationDirection.Left)
                 toNode = fromNode.GetChildNodes()[0];
             else
                 toNode = fromNode.GetChildNodes()[1];
+            ReachNodeEvent(fromNode);
             segmentProgress = 0f;
         }
         else
             mRenderer.UpdatePointer(segmentProgress);
     }
 
-    //creates a map node graph with exclusively binary branching and arbitrary node types
+    //creates a map node graph with exclusively binary branching and random node types
     private MapNode GenerateBinaryTree(int depth)
     {
         if (depth == 0)
