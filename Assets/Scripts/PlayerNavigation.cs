@@ -46,7 +46,7 @@ public class PlayerNavigation : MonoBehaviour
         if (windForce != Vector3.zero && GameManager.Instance.station == GameManager.StationType.None)
         {
             Vector3 windVelocity = windForce.normalized * windStrength * Time.deltaTime;
-            navMeshAgent.Move(windVelocity);
+            navMeshAgent.Move(-windVelocity);
         }
     }
 
@@ -90,6 +90,7 @@ public class PlayerNavigation : MonoBehaviour
 
     public void SetWind(Vector3 direction, float strength)
     {
+        Debug.Log("Here");
         windForce = direction.normalized;
         windStrength = strength;
     }
