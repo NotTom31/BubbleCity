@@ -58,8 +58,7 @@ public class ShipLogistics
             OnFuelChanged?.Invoke(_currentShipFuel);
         }
     }
-    public float CurrentShipSpeed = 1.0f;
-
+    
     public Action<string, Temperature> OnTemperatureChanged;
     public Action<NavigationDirection> OnNavigationDirectionChanged;
     public Action<string> OnShipMovementSpeedSettingChanged;
@@ -157,6 +156,14 @@ public class ShipLogistics
 
     public bool ConsumeFuel(float deltaTime)
     {
+        // Refuel
+        var refuelAmount = GameManager.Instance.nodeHazards.GetActiveNodeStats().refuelAmount;
+        if (refuelAmount > 0)
+        {
+            CurrentShipFuel += refuelAmount * Time.deltaTime;
+        }
+        
+        // Consume it
         bool hasFuel = CurrentShipFuel > 0;
         CurrentShipFuel -= (deltaTime / 100.0f) * FuelConsumptionRate;
         if (CurrentShipFuel <= 0)
