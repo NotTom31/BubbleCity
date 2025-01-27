@@ -1,28 +1,28 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class TitleMenuController : MonoBehaviour
+public class PauseMenuController : MonoBehaviour
 {
-    public Button StartButton;
+    public Button TitleButton;
     public Button CreditsButton;
     public Button QuitButton;
 
     private void Start()
     {
-        StartButton.onClick.AddListener(StartGame);
+        TitleButton.onClick.AddListener(ReturnToTitle);
         CreditsButton.onClick.AddListener(ShowCredits);
         QuitButton.onClick.AddListener(QuitGame);
     }
 
-    private void StartGame()
+    private void ReturnToTitle()
     {
-        Debug.Log("Start Game");
-        SceneManager.LoadScene("Game");
+        Debug.Log("Return to title");
+        SceneManager.LoadScene("Title");
     }
     
     private void ShowCredits()
@@ -32,13 +32,13 @@ public class TitleMenuController : MonoBehaviour
     
     private void QuitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (Application.isEditor)
         {
             UnityEditor.EditorApplication.isPlaying = false;
         }
         else
-        #endif
+#endif
         {
             Application.Quit();
         }
