@@ -19,12 +19,16 @@ public class Input : MonoBehaviour
     {
         input.Player.Select.Enable();
         input.Player.Select.performed += OnSelect;
+        input.Player.Quit.Enable();
+        input.Player.Quit.performed += OnQuit;
     }
 
     private void OnDisable()
     {
         input.Player.Select.Disable();
         input.Player.Select.performed -= OnSelect;
+        input.Player.Quit.Disable();
+        input.Player.Quit.performed -= OnQuit;
     }
 
     private void OnSelect(InputAction.CallbackContext context)
@@ -36,5 +40,10 @@ public class Input : MonoBehaviour
         {
             PointSelected?.Invoke(hit.point);
         }
+    }
+
+    private void OnQuit(InputAction.CallbackContext context)
+    {
+        Debug.Log("Escape was pressed");
     }
 }

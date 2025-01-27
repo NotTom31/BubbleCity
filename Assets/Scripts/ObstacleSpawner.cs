@@ -36,6 +36,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (spawnPoints.Length > 0 && currentSpawnIndex == 0 || currentSpawnIndex == 1 && currentSpawnIndex < spawnPoints.Length)
         {
+            SetSpawnInterval(2f);
             Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
 
             //spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
@@ -46,6 +47,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
         else if (spawnPoints.Length > 0 && currentSpawnIndex == 2 || currentSpawnIndex == 3 && currentSpawnIndex < spawnPoints.Length)
         {
+            SetSpawnInterval(2f);
             Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
 
             spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
@@ -56,11 +58,12 @@ public class ObstacleSpawner : MonoBehaviour
         }
         else if(spawnPoints.Length > 0 && currentSpawnIndex == 4 && currentSpawnIndex < spawnPoints.Length)
         {
+            SetSpawnInterval(0.5f);
             Debug.Log("asteroid");
             Vector3 spawnPosition = spawnPoints[currentSpawnIndex].transform.position;
 
-            spawnPosition.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
-            spawnPosition.z += Random.Range(-spawnArea.z / 2, spawnArea.z / 2);
+            spawnPosition.x += Random.Range(-spawnArea.x, spawnArea.x);
+            spawnPosition.z += Random.Range(-spawnArea.z, spawnArea.z);
 
             Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
         }
