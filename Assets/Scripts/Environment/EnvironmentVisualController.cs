@@ -30,6 +30,7 @@ public class EnvironmentVisualController : MonoBehaviour
         public NodeHazards.NodeStats NodeStats { get; set; }
     }
 
+    public GeneralEnvSettings Settings;
     public VizEnvironmentSO Target;
     public ParticleSystem CloudSystemPrefab;
     public NodeEntry[] Entries;
@@ -42,6 +43,7 @@ public class EnvironmentVisualController : MonoBehaviour
     private Camera _camera;
     private State _state;
     private ParticleSystem _clouds;
+    private ShipMovementSpeedSetting _currentShipSpeed;
 
     // ------------------------------------------------------------------
     private void Awake()
@@ -99,14 +101,34 @@ public class EnvironmentVisualController : MonoBehaviour
         {
             hazards.OnNodeTypeSet += OnHazardsSet;
         }
+
+        var logistics = GameManager.Instance ? GameManager.Instance.Logistics : null;
+        if(logistics != null)
+        {
+            logistics.OnShipMevementSpeedEnumChanged += Logistics_OnShipMevementSpeedEnumChanged;
+        }
     }
 
+    private void Logistics_OnShipMevementSpeedEnumChanged(ShipMovementSpeedSetting speed)
+    {
+        _currentShipSpeed = speed;
+    }
+
+    // ------------------------------------------------------------------
     private void OnDestroy()
     {
         if (GameManager.Instance != null && GameManager.Instance.nodeHazards != null)
+        {
             GameManager.Instance.nodeHazards.OnNodeTypeSet -= OnHazardsSet;
+        }
+
+        if (GameManager.Instance != null && GameManager.Instance.Logistics != null)
+        {
+            GameManager.Instance.Logistics.OnShipMevementSpeedEnumChanged -= Logistics_OnShipMevementSpeedEnumChanged;
+        }
     }
 
+    // ------------------------------------------------------------------
     private void OnHazardsSet(MapNode.NodeType type, NodeHazards.NodeStats stats)
     {
         if (_state.Particles)
@@ -142,6 +164,7 @@ public class EnvironmentVisualController : MonoBehaviour
     public void TestCold() => SetNodeType(MapNode.NodeType.Cold);
     public void TestAsteroid() => SetNodeType(MapNode.NodeType.Asteroid);
 
+    // ------------------------------------------------------------------
     public void SetNodeType(MapNode.NodeType type)
     {
         var yaw = UnityEngine.Random.Range(0, 3) * 90f;
@@ -168,8 +191,37 @@ public class EnvironmentVisualController : MonoBehaviour
             return;
         }
 
+        UpdateCloudSpeed();
+
         float t = EnableBlending ? BlendSpeed * Time.deltaTime : 1.0f;
         SetBlend(t);
+    }
+
+    private void UpdateCloudSpeed()
+    {
+        if(_clouds)
+        {
+            var main = _clouds.main;
+            main.simulationSpeed = GetCurrentShipSpeed();
+        }
+    }
+
+    private float GetCurrentShipSpeed()
+    {
+        switch(_currentShipSpeed)
+        {
+            case ShipMovementSpeedSetting.Slow:
+                return Settings ? Settings.SlowSpeedMult : 1;
+
+            case ShipMovementSpeedSetting.Medium:
+                return Settings ? Settings.SpeedMult : 1;
+
+            case ShipMovementSpeedSetting.Fast:
+                return Settings ? Settings.FastSpeedMult : 1;
+
+            default:
+                return 1;
+        }
     }
 
     // ------------------------------------------------------------------
