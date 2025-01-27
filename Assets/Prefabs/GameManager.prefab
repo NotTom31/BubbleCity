@@ -159,7 +159,6 @@ MonoBehaviour:
   Logistics:
     _baseShipMovementSpeed: 1
     BaseFuelConsumptionRate: 0.5
-    CurrentShipSpeed: 1
     temperatureRegulationCounter: 0
     temperatureRegulationTargetClicks: 10
   playerObject: {fileID: 0}
@@ -1225,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 688659bdc8ebf7242baac9b65ccaf647, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2928333
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 688659bdc8ebf7242baac9b65ccaf647, type: 3}
       propertyPath: m_LocalPosition.z

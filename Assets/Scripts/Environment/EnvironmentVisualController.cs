@@ -26,6 +26,7 @@ public class EnvironmentVisualController : MonoBehaviour
         public Color FogColor;
         public float FogDistance;
 
+        public MapNode.NodeType CurrType { get; set; }
         public ParticleSystem Particles { get; set; }
         public NodeHazards.NodeStats NodeStats { get; set; }
     }
@@ -43,7 +44,6 @@ public class EnvironmentVisualController : MonoBehaviour
     private Camera _camera;
     private State _state;
     private ParticleSystem _clouds;
-    private ShipMovementSpeedSetting _currentShipSpeed;
     private float _shipSpeedMult = 1.0f;
 
     // ------------------------------------------------------------------
@@ -70,8 +70,6 @@ public class EnvironmentVisualController : MonoBehaviour
                 particles.transform.localScale = Vector3.one;
 
                 entry.ParticleInstance = particles;
-
-                Debug.LogError($"Preallocating {particles}");
             }
         }
 
@@ -104,17 +102,6 @@ public class EnvironmentVisualController : MonoBehaviour
         {
             hazards.OnNodeTypeSet += OnHazardsSet;
         }
-
-        var logistics = GameManager.Instance ? GameManager.Instance.Logistics : null;
-        if(logistics != null)
-        {
-            logistics.OnShipMevementSpeedEnumChanged += Logistics_OnShipMevementSpeedEnumChanged;
-        }
-    }
-
-    private void Logistics_OnShipMevementSpeedEnumChanged(ShipMovementSpeedSetting speed)
-    {
-        _currentShipSpeed = speed;
     }
 
     // ------------------------------------------------------------------
@@ -123,11 +110,6 @@ public class EnvironmentVisualController : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.nodeHazards != null)
         {
             GameManager.Instance.nodeHazards.OnNodeTypeSet -= OnHazardsSet;
-        }
-
-        if (GameManager.Instance != null && GameManager.Instance.Logistics != null)
-        {
-            GameManager.Instance.Logistics.OnShipMevementSpeedEnumChanged -= Logistics_OnShipMevementSpeedEnumChanged;
         }
     }
 
@@ -142,6 +124,7 @@ public class EnvironmentVisualController : MonoBehaviour
         var entry = Entries.FirstOrDefault((x) => x.Type == type);
         if(entry != null)
         {
+            _state.CurrType = type;
             _state.NodeStats = stats;
             _state.Particles = entry.ParticleInstance;
 
@@ -166,6 +149,7 @@ public class EnvironmentVisualController : MonoBehaviour
     public void TestClear() => SetNodeType(MapNode.NodeType.Clear);
     public void TestCold() => SetNodeType(MapNode.NodeType.Cold);
     public void TestAsteroid() => SetNodeType(MapNode.NodeType.Asteroid);
+    public void TestThunder() => SetNodeType(MapNode.NodeType.Thunder);
 
     // ------------------------------------------------------------------
     public void SetNodeType(MapNode.NodeType type)

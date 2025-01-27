@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 364767185}
   - component: {fileID: 364767184}
   m_Layer: 5
-  m_Name: Warm
+  m_Name: Thunder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1155,7 +1155,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1125901429}
         m_TargetAssemblyTypeName: EnvironmentVisualController, Assembly-CSharp
-        m_MethodName: TestAsteroid
+        m_MethodName: TestThunder
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2668,7 +2668,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3733,7 +3733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2599de6a003b0f40ad81ea19dc9a04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Settings: {fileID: 0}
   Target: {fileID: 11400000, guid: c98ed646960d35148b0fd58e7ba32cbb, type: 2}
+  CloudSystemPrefab: {fileID: 0}
   Entries: []
   EnableBlending: 1
   BlendSpeed: 1
@@ -4433,6 +4435,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1832733083 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+  m_PrefabInstance: {fileID: 6395725079882894355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1876652148
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,7 +5067,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 22.38, z: -23.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1832733083}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25.083, y: 0, z: 0}
@@ -5255,3 +5263,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010d5672b9d1a214db19672a43ac6e0a, type: 3}
+--- !u!1001 &6395725079882894355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2116675741}
+    m_Modifications:
+    - target: {fileID: 4999371848618951821, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_Name
+      value: FX_Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6501113447429020140, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505904309304866897, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 1114714789}
+    - target: {fileID: 6505904309304866897, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6806678faeecfc742add91ab685f22bf, type: 3}

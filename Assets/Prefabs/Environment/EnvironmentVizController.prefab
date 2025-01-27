@@ -61,7 +61,7 @@ MonoBehaviour:
     ParticlePrefab: {fileID: 6450024899126530773, guid: 51abeafee2a1a5d48a47833ce52e5441, type: 3}
     Settings: {fileID: 11400000, guid: 1e4d6dde5957c77409ae080e1518efcf, type: 2}
   - Type: 4
-    ParticlePrefab: {fileID: 0}
+    ParticlePrefab: {fileID: 2385424524451558261, guid: 6806678faeecfc742add91ab685f22bf, type: 3}
     Settings: {fileID: 11400000, guid: a0751427e00429b479a309ea538daa63, type: 2}
   - Type: 5
     ParticlePrefab: {fileID: 5994886504936412294, guid: cbb16c7368084be468e6c4ef7bd92b21, type: 3}
