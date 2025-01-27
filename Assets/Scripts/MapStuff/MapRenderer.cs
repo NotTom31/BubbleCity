@@ -48,11 +48,11 @@ public class MapRenderer : MonoBehaviour
         yOffset += layersize;
         remainingDepth--;
 
-        RecursiveRender(xSpace, xOffset + xSpace / 2f, yOffset, root.GetChildNodes()[0], remainingDepth);
-        RecursiveRender(xSpace, xOffset - xSpace / 2f, yOffset, root.GetChildNodes()[1], remainingDepth);
+        RecursiveRender(xSpace, xOffset + xSpace / 2f, yOffset, root.GetChildNodes()[1], remainingDepth);
+        RecursiveRender(xSpace, xOffset - xSpace / 2f, yOffset, root.GetChildNodes()[0], remainingDepth);
         
-        RenderLine(root.icon, root.GetChildNodes()[0].icon);
         RenderLine(root.icon, root.GetChildNodes()[1].icon);
+        RenderLine(root.icon, root.GetChildNodes()[0].icon);
     }
 
     private void RenderLine(MapNodeIcon parentIcon, MapNodeIcon childIcon)
