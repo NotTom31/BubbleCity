@@ -78,42 +78,53 @@ public class NavigationStationUI : MonoBehaviour
     
     public void SetUpcomingNodes(MapNode leftNode, MapNode rightNode)
     {
-        GetNodeDescription(leftNode);
-        string positives = "Fuel Consumption--";
-        string negatives = "Player Speed --\nShip Speed -- \n";
-        string descriptionText = $"<<color=#9F5255>{negatives}<color=#AAB99A>{positives}";
+        Debug.Log("Setting Upcoming Nodes, Left: " + leftNode.GetNodeType() + " Right: " + rightNode.GetNodeType());
+        var descriptions = GetNodeDescription(leftNode);
+        string descriptionText = $"<color=#9F5255>{descriptions.negatives}<color=#AAB99A>{descriptions.positives}";
+        leftMapNodeChoiceUI.SetNodeText($"{leftNode.GetNodeType().ToString()}", descriptionText); 
         
-        leftMapNodeChoiceUI.SetNodeText($"{leftNode.GetNodeType().ToString()} Storm", "Stuff");
-        rightMapNodeChoiceUI.SetNodeText($"{rightNode.GetNodeType()} Storm", "Right Stuff");
+        descriptions = GetNodeDescription(rightNode);
+        descriptionText = $"<color=#9F5255>{descriptions.negatives}<color=#AAB99A>{descriptions.positives}";
+        rightMapNodeChoiceUI.SetNodeText($"{rightNode.GetNodeType()}", descriptionText);
     }
 
-    private (string, string) GetNodeDescription(MapNode node)
+    private (string positives, string negatives) GetNodeDescription(MapNode node)
     {
-        (string, string) description = ("", "");
-        // switch (node.GetNodeType())
-        // {
-        //     case MapNode.NodeType.Cold:
-        //         description = "Player Speed--\n" +
-        //                       "Ship Speed--\n";
-        //         break;
-        //     case MapNode.NodeType.Heat:
-        //         description = "Heat Storm";
-        //         break;
-        //     case MapNode.NodeType.Asteroid:
-        //         description = "Asteroid Storm";
-        //         break;
-        //     case MapNode.NodeType.Wind:
-        //         description = "Wind Storm";
-        //         break;
-        //     case MapNode.NodeType.Thunder:
-        //         description = "Thunder Storm";
-        //         break;
-        //     case MapNode.NodeType.Clear:
-        //         description = "Clear Skies";
-        //         break;
-        //     default:
-        //         throw new ArgumentOutOfRangeException();
-        // }
+        (string positives, string negatives) description = ("", "");
+        switch (node.GetNodeType())
+        {
+            case MapNode.NodeType.Cold:
+                description.negatives = "Player Speed-\n" +
+                                        "Ship Speed-\n";
+                description.positives = "Player Speed-\n" +
+                                        "Ship Speed-\n";
+                break;
+            case MapNode.NodeType.Heat:
+                description.negatives = "Its Hot\n" +
+                                        "Ship Speed--\n";
+                description.positives = "Ship Speed+\n";                
+                break;
+            case MapNode.NodeType.Asteroid:
+                description.negatives = "Has Rocks\n";
+                description.positives = "Has Rocks\n";
+                break;
+            case MapNode.NodeType.Wind:
+                description.negatives = "Get Blown Around\n" +
+                                        "Fuel Consumption+\n";
+                description.positives = "Player Speed--\n" +
+                                        "Ship Speed+++\n";
+                break;
+            case MapNode.NodeType.Thunder:
+                description.negatives = "Loud\n";
+                description.positives = "Bright\n";
+                break;
+            case MapNode.NodeType.Clear:
+                description.negatives = "Not Exciting\n";
+                description.positives = "Not Exciting\n";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
         return description;
     }

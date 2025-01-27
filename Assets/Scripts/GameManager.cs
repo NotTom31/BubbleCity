@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         }
 
         mapNavigator.OnReachNode += NodeReached;
+        NodeReached(mapNavigator.GetFromNode());
     }
 
     private void NodeReached(MapNode node)
@@ -128,11 +129,14 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        
-        var childNodes = node.GetChildNodes();
-        navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
+        var childNodes = mapNavigator.GetToNode().GetChildNodes();
+        if (childNodes.Count > 1)
+        {
+            navigationStationUI.SetUpcomingNodes(childNodes[0], childNodes[1]);
+        }
 
-        AudioManager.Instance.SetActiveNodeType(node.GetNodeType());
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetActiveNodeType(node.GetNodeType());
     }
 
     // Update is called once per frame
