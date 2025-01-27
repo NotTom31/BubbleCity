@@ -45,5 +45,6 @@ public class Input : MonoBehaviour
     private void OnQuit(InputAction.CallbackContext context)
     {
         Debug.Log("Escape was pressed");
+        GameManager.Instance.PauseGame();
     }
 }
