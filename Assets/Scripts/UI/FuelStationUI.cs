@@ -69,11 +69,11 @@ public class FuelStationUI : MonoBehaviour
 
     public void ButtonOnPointerEnterCallback(BaseEventData eventData)
     {
-        AudioManager.Instance.UIHover();
+        AudioManager.Instance?.UIHover();
     }
 
     public void ButtonOnClick()
     {
-        AudioManager.Instance.UISelect();
+        AudioManager.Instance?.UISelect();
     }
 }
