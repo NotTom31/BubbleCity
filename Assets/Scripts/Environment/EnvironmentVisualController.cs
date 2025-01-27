@@ -44,6 +44,7 @@ public class EnvironmentVisualController : MonoBehaviour
     private State _state;
     private ParticleSystem _clouds;
     private ShipMovementSpeedSetting _currentShipSpeed;
+    private float _shipSpeedMult = 1.0f;
 
     // ------------------------------------------------------------------
     private void Awake()
@@ -69,6 +70,8 @@ public class EnvironmentVisualController : MonoBehaviour
                 particles.transform.localScale = Vector3.one;
 
                 entry.ParticleInstance = particles;
+
+                Debug.LogError($"Preallocating {particles}");
             }
         }
 
@@ -199,32 +202,22 @@ public class EnvironmentVisualController : MonoBehaviour
 
     private void UpdateCloudSpeed()
     {
-        if(_clouds)
+        if(GameManager.Instance)
+        {
+            if(GameManager.Instance.nodeHazards != null)
+            {
+                _shipSpeedMult = GameManager.Instance.Logistics.ShipMovementSpeed;
+            }
+        }
+
+        if (_clouds)
         {
             var particleSystems = _clouds.GetComponentsInChildren<ParticleSystem>();
             foreach(var p in particleSystems)
             {
                 var main = p.main;
-                main.simulationSpeed = GetCurrentShipSpeed();
+                main.simulationSpeed = _shipSpeedMult * (Settings ? Settings.GlobalCloudSpeedScalar : 1.0f);
             }
-        }
-    }
-
-    private float GetCurrentShipSpeed()
-    {
-        switch(_currentShipSpeed)
-        {
-            case ShipMovementSpeedSetting.Slow:
-                return Settings ? Settings.SlowSpeedMult : 1;
-
-            case ShipMovementSpeedSetting.Medium:
-                return Settings ? Settings.SpeedMult : 1;
-
-            case ShipMovementSpeedSetting.Fast:
-                return Settings ? Settings.FastSpeedMult : 1;
-
-            default:
-                return 1;
         }
     }
 
