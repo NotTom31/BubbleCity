@@ -201,8 +201,12 @@ public class EnvironmentVisualController : MonoBehaviour
     {
         if(_clouds)
         {
-            var main = _clouds.main;
-            main.simulationSpeed = GetCurrentShipSpeed();
+            var particleSystems = _clouds.GetComponentsInChildren<ParticleSystem>();
+            foreach(var p in particleSystems)
+            {
+                var main = p.main;
+                main.simulationSpeed = GetCurrentShipSpeed();
+            }
         }
     }
 

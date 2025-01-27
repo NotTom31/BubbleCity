@@ -39,6 +39,7 @@ public class ShipLogistics
         set
         {
             _shipMovementSpeedSetting = value;
+            OnShipMevementSpeedEnumChanged?.Invoke(value);
             OnShipMovementSpeedSettingChanged?.Invoke(CurrentShipMovementSpeedSettingString);
         }
     }
