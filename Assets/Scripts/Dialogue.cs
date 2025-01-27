@@ -17,7 +17,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         nextButton.onClick.AddListener(NextDialogue);
-        GameManager.Instance.PauseGame();
+        Time.timeScale = 0;
         GameManager.Instance.isInDialogue = true;
         if (dialogueLines.Length > 0)
         {
@@ -56,7 +56,7 @@ public class Dialogue : MonoBehaviour
         dialoguePanel.SetActive(false);
         pops.SetActive(false);
         currentLineIndex = 0;
-        GameManager.Instance.PauseGame();
+        Time.timeScale = 1;
         AudioManager.Instance.PlayGameStart();
     }
 }
