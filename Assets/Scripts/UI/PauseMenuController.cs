@@ -22,12 +22,13 @@ public class PauseMenuController : MonoBehaviour
     private void ReturnToTitle()
     {
         Debug.Log("Return to title");
+        Time.timeScale = 1;
         SceneManager.LoadScene("Title");
     }
     
     private void ShowCredits()
     {
-        Debug.Log("Show Credits");
+        GameManager.Instance.PauseGame();
     }
     
     private void QuitGame()
