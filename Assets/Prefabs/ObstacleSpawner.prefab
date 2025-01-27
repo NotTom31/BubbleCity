@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7509766471871926188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6544632317892385741}
+  m_Layer: 0
+  m_Name: AsteroidSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6544632317892385741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509766471871926188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7532254769121713888}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7532254769121713890
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +64,7 @@ Transform:
   - {fileID: 7532254769486361714}
   - {fileID: 7532254770320141045}
   - {fileID: 7532254770634471761}
+  - {fileID: 6544632317892385741}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,11 +81,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1543374145860706208, guid: efb94f6934aa0c2479b99a5a234ed042, type: 3}
+  asteroidPrefab: {fileID: 1543374145860706208, guid: b3bf1dcb1cdffdd4282674dda24d9840, type: 3}
   spawnPoints:
   - {fileID: 7532254769836829333}
   - {fileID: 7532254769486361715}
   - {fileID: 7532254770320141046}
   - {fileID: 7532254770634471762}
+  - {fileID: 7509766471871926188}
   spawnArea: {x: 10, y: 0, z: 10}
   spawnInterval: 2
   isSpawningEnabled: 1

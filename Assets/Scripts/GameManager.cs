@@ -96,8 +96,9 @@ public class GameManager : MonoBehaviour
                 playerNavigation.SetWind(Vector3.zero, 0f);
                 break;
             case MapNode.NodeType.Asteroid:
-                obstacleSpawner.DisableSpawner();
+                obstacleSpawner.EnableSpawner();
                 playerNavigation.SetWind(Vector3.zero, 0f);
+                obstacleSpawner.SetSpawnPoint(4);
                 break;
             case MapNode.NodeType.Wind:
                 obstacleSpawner.EnableSpawner();
