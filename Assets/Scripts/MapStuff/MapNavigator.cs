@@ -22,6 +22,12 @@ public class MapNavigator : MonoBehaviour
         if (OnReachNode != null)
             OnReachNode(nodeReached);
     }
+    public event Action OnReachEnd;
+    public void ReachEndEvent()
+    {
+        if (OnReachEnd != null)
+            OnReachEnd();
+    }
 
     private void Awake()
     {
@@ -47,6 +53,7 @@ public class MapNavigator : MonoBehaviour
             if (fromNode.GetChildNodes().Count == 0)
             {
                 moving = false;
+                ReachEndEvent();
                 return;
             }
             NavigationDirection dir = GameManager.Instance.Logistics.CurrentNavigationDirection;

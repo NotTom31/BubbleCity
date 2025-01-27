@@ -39,6 +39,7 @@ public class ShipLogistics
         set
         {
             _shipMovementSpeedSetting = value;
+            OnShipMevementSpeedEnumChanged?.Invoke(value);
             OnShipMovementSpeedSettingChanged?.Invoke(CurrentShipMovementSpeedSettingString);
         }
     }
@@ -61,6 +62,7 @@ public class ShipLogistics
     public Action<string, Temperature> OnTemperatureChanged;
     public Action<NavigationDirection> OnNavigationDirectionChanged;
     public Action<string> OnShipMovementSpeedSettingChanged;
+    public event Action<ShipMovementSpeedSetting> OnShipMevementSpeedEnumChanged;
     public Action<float> OnFuelChanged;
     // UI Strings
     public string CurrentTemperatureString

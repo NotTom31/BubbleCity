@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2599de6a003b0f40ad81ea19dc9a04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Settings: {fileID: 11400000, guid: 96cd61a63232920489a5d19c0cbed533, type: 2}
   Target: {fileID: 11400000, guid: 9238cbe9674ec514090da9c99c28e7cc, type: 2}
   CloudSystemPrefab: {fileID: 7663519937160099179, guid: c9f1d4b3ad1e96244ad6b052f99c670e, type: 3}
   Entries:
