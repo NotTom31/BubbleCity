@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ObstacleSpawner obstacleSpawner;
     private PlayerNavigation playerNavigation;
     private bool GameOver = false;
+    public PauseMenuController pauseMenuController;
     
     public enum StationType
     {
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         mapNavigator.OnReachNode += NodeReached;
         NodeReached(mapNavigator.GetFromNode());
+        pauseMenuController.gameObject.SetActive(false);
     }
 
     private void NodeReached(MapNode node)
@@ -228,6 +230,14 @@ public class GameManager : MonoBehaviour
     public void SetPlayerSpeed(float speed)
     {
         playerNavigation.SetSpeed(speed);
+    }
+
+    private bool isPaused = false;
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        pauseMenuController.gameObject.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
     }
 }
 
